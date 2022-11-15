@@ -59,4 +59,5 @@ dependencies {
     // Modules
     implementation project(Modules.arch)
     implementation project(Modules.latteTools)
+    implementation project(Modules.design)
 }

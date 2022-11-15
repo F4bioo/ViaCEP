@@ -1,0 +1,16 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="Theme.Ds" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/ds_primary</item>
+        <item name="colorPrimaryVariant">@color/ds_primary</item>
+        <item name="colorOnPrimary">@color/ds_black</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/ds_teal_200</item>
+        <item name="colorSecondaryVariant">@color/ds_teal_200</item>
+        <item name="colorOnSecondary">@color/ds_black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
+</resources>
