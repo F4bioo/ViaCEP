@@ -1,0 +1,17 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+}
+apply from: "$rootDir/plugins/android-build.gradle"
+
+dependencies {
+    // Modules
+    implementation project(Modules.arch)
+
+    // Libs
+    implementation(Libs.gson)
+    implementation(Libs.okhttp)
+    implementation(Libs.okhttpLoggingInterceptor)
+    implementation(Libs.retrofit)
+    implementation(Libs.retrofitConverterGson)
+}

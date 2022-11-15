@@ -1,0 +1,17 @@
+dependencies {
+    // Libs
+    implementation(Libs.coroutines)
+    implementation(Libs.coroutinesCore)
+
+    // TestLibs
+    implementation(TestLibs.koinTest)
+    implementation(TestLibs.kotlinCoroutinesTest)
+    testImplementation(TestLibs.junitTest)
+    testImplementation(TestLibs.mockkUnitTest)
+    testImplementation(TestLibs.kotlinTest)
+    testImplementation(TestLibs.kotlinJUnitTest)
+    testImplementation(TestLibs.kotlinCoroutinesTest)
+    testImplementation(TestLibs.turbineTest)
+    testImplementation(TestLibs.runnerTest)
+    testImplementation(TestLibs.truthTest)
+}

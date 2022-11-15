@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:padding="@dimen/ds_size_04">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/materialCardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/ds_size_04"
+        app:cardBackgroundColor="#F2EBEBEB"
+        app:cardCornerRadius="@dimen/ds_radius_md"
+        app:cardElevation="@dimen/ds_size_01"
+        app:layout_constraintBottom_toTopOf="@id/ds_button_close"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/ds_size_07">
+
+            <TextView
+                android:id="@+id/ds_text_title"
+                style="@style/DsTextHighlightLarge"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:textColor="#1F1F1F"
+                android:visibility="gone"
+                app:layout_constraintBottom_toTopOf="@id/ds_text_message"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="@tools:sample/lorem/random"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/ds_text_message"
+                style="@style/DsTextMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/ds_size_02"
+                android:ellipsize="end"
+                android:maxLines="5"
+                android:textColor="#232323"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ds_text_title"
+                tools:text="@tools:sample/lorem/random"
+                tools:visibility="visible" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/ds_button_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/ds_size_01"
+        android:contentDescription="@string/common_close"
+        android:src="@drawable/ds_ic_cancel"
+        app:backgroundTint="#F2EBEBEB"
+        app:elevation="@dimen/ds_size_01"
+        app:fabSize="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/materialCardView" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
