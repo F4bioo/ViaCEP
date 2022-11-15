@@ -21,6 +21,6 @@ local.properties
 buildSrc/.gradle
 buildSrc/build
 
-# keys
+# Keys
 /keyStore
 /keyStore.properties
