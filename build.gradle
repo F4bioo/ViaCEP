@@ -3,6 +3,12 @@ import static Versions.gradle_version
 import static Versions.graphAssertion_version
 import static Versions.kotlin_version
 
+buildscript {
+    dependencies {
+        classpath(Root.classPathJaCoCo)
+    }
+}
+
 plugins {
     id 'com.android.application' version "$gradle_version" apply false
     id 'com.android.library' version '7.2.2' apply false
