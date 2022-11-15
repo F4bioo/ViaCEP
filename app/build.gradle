@@ -4,6 +4,7 @@ plugins {
 }
 apply from: "$rootDir/plugins/android-build.gradle"
 apply from: "$rootDir/plugins/test-build.gradle"
+apply from: "$rootDir/config/detekt/detekt-build.gradle"
 
 def keyStorePropertiesFile = rootProject.file("$rootDir/keyStore.properties")
 def keyStoreProperties = new Properties()
