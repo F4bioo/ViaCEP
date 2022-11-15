@@ -5,7 +5,19 @@ plugins {
 apply from: "$rootDir/plugins/android-build.gradle"
 apply from: "$rootDir/plugins/test-build.gradle"
 
+def keyStorePropertiesFile = rootProject.file("$rootDir/keyStore.properties")
+def keyStoreProperties = new Properties()
+keyStoreProperties.load(new FileInputStream(keyStorePropertiesFile))
+
 android {
+    signingConfigs {
+        release {
+            storeFile rootProject.file(keyStoreProperties['STORE_FILE'])
+            storePassword keyStoreProperties['STORE_PASSWORD']
+            keyAlias keyStoreProperties['KEY_ALIAS']
+            keyPassword keyStoreProperties['KEY_PASSWORD']
+        }
+    }
     defaultConfig {
         applicationId Config.applicationId
     }
@@ -26,6 +38,7 @@ android {
         release {
             minifyEnabled true
             shrinkResources true
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'),
                     "$rootDir/app/proguard-rules.pro",
                     "$rootDir/app/proguard-rules-staging.pro"

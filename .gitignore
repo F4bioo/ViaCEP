@@ -13,3 +13,14 @@
 .externalNativeBuild
 .cxx
 local.properties
+
+# Git Toolbox
+/.idea/git_toolbox_prj.xml
+
+# BuildSrc
+buildSrc/.gradle
+buildSrc/build
+
+# keys
+/keyStore
+/keyStore.properties
