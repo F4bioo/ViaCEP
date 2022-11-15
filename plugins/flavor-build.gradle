@@ -1,0 +1,32 @@
+ext.flavorConfig = {
+
+    flavorDimensions "default"
+    productFlavors {
+        develop {
+            dimension "default"
+            ext.appIdSuffix = '.develop'
+            manifestPlaceholders = [appName: "ViaCEP develop"]
+        }
+        preprod {
+            dimension "default"
+            ext.appIdSuffix = '.preprod'
+            manifestPlaceholders = [appName: "ViaCEP preprod"]
+        }
+        prod {
+            dimension "default"
+            manifestPlaceholders = [appName: "ViaCEP"]
+        }
+    }
+
+    productFlavors.all { flavor ->
+        if (flavor.hasProperty('appIdSuffix') && isApplicationProject()) {
+            flavor.applicationIdSuffix = flavor.appIdSuffix
+        }
+    }
+}
+
+def isApplicationProject() {
+    return project.android.class.simpleName.startsWith('BaseAppModuleExtension')
+    // in AGP 3.1.x with library modules instead of feature modules:
+    // return project.android instanceof com.android.build.gradle.AppExtension
+}

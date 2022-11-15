@@ -1,0 +1,41 @@
+dependencies {
+    // TestLibs
+    implementation(TestLibs.koinTest)
+    implementation(TestLibs.mockWebserverTest)
+    implementation(TestLibs.kotlinCoroutinesTest)
+    implementation(TestLibs.fragmentTest)
+    testImplementation(TestLibs.junitTest)
+    testImplementation(TestLibs.kotlinTest)
+    testImplementation(TestLibs.kotlinJUnitTest)
+    testImplementation(TestLibs.kotlinCoroutinesTest)
+    testImplementation(TestLibs.arcCoreTest)
+    testImplementation(TestLibs.turbineTest)
+    testImplementation(TestLibs.mockWebserverTest)
+    testImplementation(TestLibs.okhttpTest)
+    testImplementation(TestLibs.runnerTest)
+    testImplementation(TestLibs.truthTest)
+    testImplementation(TestLibs.mockkUnitTest)
+    testImplementation(TestLibs.mockitoInlineTest)
+    testImplementation(TestLibs.mockitoKotlinTest)
+
+    api(TestLibs.coreKtxTest)
+    api(TestLibs.espressoCoreTest)
+    api(TestLibs.espressoIntentsTest)
+    api(TestLibs.espressoContribTest)
+    api(TestLibs.espressoWebTest)
+    api(TestLibs.espressoAccessibilityTest)
+
+    androidTestImplementation(TestLibs.turbineTest)
+    androidTestImplementation(TestLibs.truthTest)
+    androidTestImplementation(TestLibs.arcCoreTest)
+    androidTestImplementation(TestLibs.koinTest)
+    androidTestImplementation(TestLibs.kotlinCoroutinesTest)
+    androidTestImplementation(TestLibs.runnerTest)
+    androidTestImplementation(TestLibs.extJunitTest)
+    androidTestImplementation(TestLibs.extJunitKtxTest)
+    androidTestImplementation(TestLibs.espressoCoreTest)
+    androidTestImplementation(TestLibs.mockkAndroidTest)
+    androidTestImplementation(TestLibs.mockitoAndroidTest) {
+        exclude group: "net.bytebuddy", module: "byte-buddy-android"
+    }
+}
