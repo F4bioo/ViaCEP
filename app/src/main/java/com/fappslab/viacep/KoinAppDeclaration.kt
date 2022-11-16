@@ -2,6 +2,7 @@ package com.fappslab.viacep
 
 import android.app.Application
 import com.fappslab.viacep.di.MainModule
+import com.fappslab.viacep.remote.di.DataRemoteModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.logger.Level
@@ -14,6 +15,7 @@ object KoinAppDeclaration {
         androidContext(application)
 
         // Koin Load
+        DataRemoteModule.load()
         MainModule.load()
     }
 }
