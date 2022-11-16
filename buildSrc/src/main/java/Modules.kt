@@ -8,4 +8,5 @@ object Modules {
     // core
 
     // features
+    const val register = ":features:register"
 }
