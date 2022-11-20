@@ -16,4 +16,5 @@ dependencies {
     implementation project(Modules.arch)
     implementation project(Modules.design)
     implementation project(Modules.latteTools)
+    implementation project(Modules.remote)
 }

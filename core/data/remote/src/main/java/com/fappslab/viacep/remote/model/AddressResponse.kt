@@ -2,7 +2,7 @@ package com.fappslab.viacep.remote.model
 
 import com.google.gson.annotations.SerializedName
 
-data class CepResponse(
+data class AddressResponse(
     @SerializedName("cep")
     val zipcode: String?,
     @SerializedName("logradouro")
