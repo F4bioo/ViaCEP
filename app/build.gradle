@@ -61,5 +61,5 @@ dependencies {
     implementation project(Modules.latteTools)
     implementation project(Modules.design)
     implementation project(Modules.remote)
-    implementation project(Modules.register)
+    implementation project(Modules.form)
 }

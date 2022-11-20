@@ -9,5 +9,5 @@ object Modules {
     const val remote = ":core:data:remote"
 
     // features
-    const val register = ":features:register"
+    const val form = ":features:form"
 }
