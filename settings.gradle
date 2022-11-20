@@ -15,7 +15,7 @@ dependencyResolutionManagement {
 rootProject.name = "ViaCEP"
 include ':app',
         ':core:data:remote',
-        ':features:register',
+        ':features:form',
         ':libraries:arch',
         ':libraries:design',
         ':libraries:testLibs:lattetools'
