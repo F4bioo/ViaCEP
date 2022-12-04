@@ -1,56 +1,31 @@
 package com.fappslab.viacep.remote.extension
 
-import com.fappslab.viacep.remote.exception.ArgumentException
-import com.fappslab.viacep.remote.exception.FailureException
-import com.fappslab.viacep.remote.exception.NetworkException
+import com.fappslab.viacep.remote.exception.ApplicationThrowable
+import com.fappslab.viacep.remote.exception.ApplicationThrowable.ApiServiceThrowable
+import com.fappslab.viacep.remote.exception.ApplicationThrowable.ServerThrowable
 import com.google.gson.Gson
-import com.google.gson.JsonSyntaxException
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.catch
 import retrofit2.HttpException
-import java.io.InterruptedIOException
-import java.net.ConnectException
-import java.net.SocketException
-import java.net.SocketTimeoutException
-import java.net.UnknownHostException
-import java.util.concurrent.TimeoutException
 import kotlin.Exception as GenericException
 
-private const val UNEXPECTED_ERROR =
-    "Oops! Something went wrong while trying to get remote data."
-
-private fun HttpException.parseError(): FailureException =
+private fun HttpException.parseError(): ApplicationThrowable =
     try {
-        val convertErrorBody: FailureException? = Gson().fromJson(
+        val convertErrorBody: ApiServiceThrowable? = Gson().fromJson(
             response()?.errorBody()?.string(),
-            FailureException::class.java
+            ApiServiceThrowable::class.java
         )
-        convertErrorBody?.copy(throwable = this) ?: FailureException(
-            message = UNEXPECTED_ERROR,
-            throwable = null
-        )
+        convertErrorBody?.copy(throwable = this) ?: ServerThrowable()
     } catch (e: GenericException) {
-        FailureException(
-            message = UNEXPECTED_ERROR,
-            throwable = this
-        )
+        ServerThrowable(throwable = this)
     }
 
-private fun Throwable.toThrowable(): Throwable =
-    when (this) {
+private fun Throwable.toThrowable(): ApplicationThrowable {
+    return when (this) {
         is HttpException -> parseError()
-        is JsonSyntaxException,
-        is IllegalArgumentException -> ArgumentException()
-        is UnknownHostException,
-        is TimeoutException,
-        is InterruptedIOException,
-        is SocketTimeoutException,
-        is SocketException,
-        is ConnectException -> NetworkException()
-        else -> throw UnknownError(UNEXPECTED_ERROR)
+        else -> ApplicationThrowable.ConnectionThrowable(throwable = this)
     }
+}
 
-fun <T> Flow<T>.orParseHttpError(): Flow<T> =
-    catch { throwable ->
+fun <T> Result<T>.orParseHttpError(): Result<T> =
+    onFailure { throwable ->
         throw throwable.toThrowable()
     }

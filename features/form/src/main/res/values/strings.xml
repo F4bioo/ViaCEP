@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="form_check_field_street_blank_error">Ainda falta digitar a rua.</string>
+    <string name="form_check_field_district_blank_error">Ainda falta digitar o bairro</string>
+    <string name="form_check_field_city_blank_error">Ainda falta digitar a cidade</string>
+    <string name="form_check_field_state_blank_error">Ainda falta digitar o estado</string>
+    <string name="form_check_field_area_code_blank_error">Ainda falta digitar o código de área</string>
+</resources>

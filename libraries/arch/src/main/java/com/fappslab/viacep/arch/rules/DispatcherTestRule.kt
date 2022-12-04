@@ -2,10 +2,8 @@ package com.fappslab.viacep.arch.rules
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.test.TestCoroutineScheduler
+import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.TestDispatcher
-import kotlinx.coroutines.test.TestScope
-import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.setMain
 import org.junit.rules.TestWatcher
@@ -13,7 +11,7 @@ import org.junit.runner.Description
 
 @ExperimentalCoroutinesApi
 open class DispatcherTestRule(
-    private val testDispatcher: TestDispatcher = UnconfinedTestDispatcher(TestCoroutineScheduler())
+    open val testDispatcher: TestDispatcher = StandardTestDispatcher()
 ) : TestWatcher() {
 
     override fun starting(description: Description) {
@@ -25,8 +23,4 @@ open class DispatcherTestRule(
         super.finished(description)
         Dispatchers.resetMain()
     }
-
-    fun testDispatcher() = testDispatcher
-
-    fun testScope() = TestScope(testDispatcher)
 }

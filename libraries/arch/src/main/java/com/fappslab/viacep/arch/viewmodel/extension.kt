@@ -8,26 +8,22 @@ import kotlinx.coroutines.launch
 
 inline fun <reified S : ViewState, reified A : ViewAction> LifecycleOwner.onViewState(
     viewModel: ViewModel<S, A>,
-    crossinline state: (S) -> Unit
+    noinline state: (S) -> Unit
 ) {
     lifecycleScope.launch {
         repeatOnLifecycle(Lifecycle.State.STARTED) {
-            viewModel.state.collect { eventState ->
-                state(eventState)
-            }
+            viewModel.state.collect(state::invoke)
         }
     }
 }
 
 inline fun <reified S : ViewState, reified A : ViewAction> LifecycleOwner.onViewAction(
     viewModel: ViewModel<S, A>,
-    crossinline action: (A) -> Unit
+    noinline action: (A) -> Unit
 ) {
     lifecycleScope.launch {
         repeatOnLifecycle(Lifecycle.State.STARTED) {
-            viewModel.action.collect { eventAction ->
-                action(eventAction)
-            }
+            viewModel.action.collect(action::invoke)
         }
     }
 }
