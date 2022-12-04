@@ -1,21 +1,25 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
 }
 apply from: "$rootDir/plugins/android-build.gradle"
 
 android {
-    resourcePrefix "form"
+    defaultConfig {
+        buildConfigField "String", "DB_NAME", '"viacep.db"'
+    }
 }
 
 dependencies {
     // Libs
-    implementation(Libs.retrofit)
+    implementation(Libs.coroutines)
+    implementation(Libs.coroutinesCore)
+    implementation(Libs.roomRuntime)
+    implementation(Libs.roomKtx)
+    kapt(Libs.roomKapt)
 
     // Modules
     implementation project(Modules.arch)
-    implementation project(Modules.design)
     implementation project(Modules.latteTools)
-    implementation project(Modules.remote)
-    implementation project(Modules.local)
 }
