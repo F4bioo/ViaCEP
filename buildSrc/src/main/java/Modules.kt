@@ -6,6 +6,7 @@ object Modules {
     const val design = ":libraries:design"
 
     // core
+    const val local = ":core:data:local"
     const val remote = ":core:data:remote"
 
     // features
