@@ -2,6 +2,7 @@ package com.fappslab.viacep.arch.rules
 
 import com.google.gson.Gson
 import okhttp3.mockwebserver.Dispatcher
+import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.rules.ExternalResource
 import org.junit.rules.RuleChain
@@ -32,6 +33,10 @@ open class RemoteTestRule(
 
     fun addMockDispatcher(dispatcher: Dispatcher) {
         mockWebServer.dispatcher = dispatcher
+    }
+
+    fun mockWebServerResponse(body: String, code: Int) {
+        mockWebServer.enqueue(MockResponse().setBody(body).setResponseCode(code))
     }
 
     fun loadKoinModules(block: MutableList<Module>.() -> Unit) {

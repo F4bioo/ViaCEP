@@ -45,4 +45,16 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="DsTextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.FilledBox.Dense">
+        <item name="android:textColor">#333</item>
+        <item name="colorPrimary">#5F5F5F</item>
+        <item name="boxBackgroundColor">@color/ds_input_layout</item>
+        <item name="boxStrokeErrorColor">#E91E63</item>
+        <item name="boxStrokeColor">#5F5F5F</item>
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="boxStrokeWidthFocused">2dp</item>
+        <item name="boxCornerRadiusTopEnd">8dp</item>
+        <item name="boxCornerRadiusTopStart">8dp</item>
+    </style>
+
 </resources>

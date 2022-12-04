@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="common_empty_screen">Ops! Não conseguimos carregar o conteúdo. Vamos tentar novamente?</string>
+    <string name="common_error_title">Algo deu erro!</string>
     <string name="common_try_again">Tentar novamente</string>
     <string name="common_cancel">Cancelar</string>
     <string name="common_await">Aguarde…</string>
