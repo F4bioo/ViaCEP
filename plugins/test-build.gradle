@@ -28,6 +28,8 @@ dependencies {
     androidTestImplementation(TestLibs.turbineTest)
     androidTestImplementation(TestLibs.truthTest)
     androidTestImplementation(TestLibs.arcCoreTest)
+    androidTestImplementation(TestLibs.kotlinTest)
+    androidTestImplementation(TestLibs.kotlinJUnitTest)
     androidTestImplementation(TestLibs.koinTest)
     androidTestImplementation(TestLibs.kotlinCoroutinesTest)
     androidTestImplementation(TestLibs.runnerTest)

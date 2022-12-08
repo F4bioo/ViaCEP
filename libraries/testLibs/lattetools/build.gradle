@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
 }
 apply from: "$rootDir/plugins/android-build.gradle"
 
@@ -14,4 +15,7 @@ dependencies {
     implementation(Libs.okhttpLoggingInterceptor)
     implementation(Libs.retrofit)
     implementation(Libs.retrofitConverterGson)
+    implementation(Libs.roomRuntime)
+    implementation(Libs.roomKtx)
+    kapt(Libs.roomKapt)
 }

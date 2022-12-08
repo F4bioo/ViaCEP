@@ -3,9 +3,13 @@ package com.fappslab.viacep.form.di
 import com.fappslab.viacep.arch.koin.KoinLoad
 import com.fappslab.viacep.form.data.repository.FormRepositoryImpl
 import com.fappslab.viacep.form.data.service.FormService
-import com.fappslab.viacep.form.data.source.FormDataSourceImpl
+import com.fappslab.viacep.form.data.source.local.FormLocalDataSourceImpl
+import com.fappslab.viacep.form.data.source.remote.FormRemoteDataSourceImpl
 import com.fappslab.viacep.form.domain.usecase.GetRemoteAddressUseCase
+import com.fappslab.viacep.form.domain.usecase.SetLocalAddressUseCase
 import com.fappslab.viacep.form.presentation.viewmodel.FormViewModel
+import com.fappslab.viacep.local.client.Database
+import com.fappslab.viacep.local.database.FormDatabase
 import com.fappslab.viacep.remote.client.HttpClient
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.scope.Scope
@@ -17,6 +21,7 @@ object FormModule : KoinLoad() {
         viewModel {
             FormViewModel(
                 getRemoteAddressUseCase = getRemoteAddressUseCase(),
+                setLocalAddressUseCase = setLocalAddressUseCase()
             )
         }
     }
@@ -26,12 +31,20 @@ object FormModule : KoinLoad() {
             repository = getFormRepository()
         )
 
+    private fun Scope.setLocalAddressUseCase() =
+        SetLocalAddressUseCase(
+            repository = getFormRepository()
+        )
+
     private fun Scope.getFormRepository() =
         FormRepositoryImpl(
-            dataSource = FormDataSourceImpl(
+            remoteDataSource = FormRemoteDataSourceImpl(
                 service = get<HttpClient>().create(
                     clazz = FormService::class.java
                 )
+            ),
+            localDataSource = FormLocalDataSourceImpl(
+                database = get<Database<FormDatabase>>().create()
             )
         )
 }

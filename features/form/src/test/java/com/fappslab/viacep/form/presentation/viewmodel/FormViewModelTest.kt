@@ -4,6 +4,7 @@ import app.cash.turbine.test
 import com.fappslab.viacep.arch.rules.DispatcherTestRule
 import com.fappslab.viacep.form.data.moddel.extension.toAddress
 import com.fappslab.viacep.form.domain.usecase.GetRemoteAddressUseCase
+import com.fappslab.viacep.form.domain.usecase.SetLocalAddressUseCase
 import com.fappslab.viacep.remote.stubmockprovider.StubResponse.addressResponse
 import io.mockk.clearAllMocks
 import io.mockk.coEvery
@@ -25,12 +26,14 @@ internal class FormViewModelTest {
 
     private val initialState = FormViewState()
     private val getRemoteAddressUseCase: GetRemoteAddressUseCase = mockk()
+    private val setLocalAddressUseCase: SetLocalAddressUseCase = mockk()
     private lateinit var subject: FormViewModel
 
     @Before
     fun setUp() {
         subject = FormViewModel(
-            getRemoteAddressUseCase = getRemoteAddressUseCase
+            getRemoteAddressUseCase = getRemoteAddressUseCase,
+            setLocalAddressUseCase = setLocalAddressUseCase
         )
     }
 
@@ -117,15 +120,16 @@ internal class FormViewModelTest {
     }
 
     @Test
-    fun `saveLocalAddress Should expose ClearForm Action When invoke onSaveAddress`() {
+    fun `saveLocalAddressSuccess Should expose ClearForm Action When invoke onSaveAddress`() {
         // Given
         val address = addressResponse.toAddress()
         val expectedAction = FormViewAction.ClearForm
         coEvery { getRemoteAddressUseCase(any()) } returns address
+        coEvery { setLocalAddressUseCase(any()) } returns Unit
         runTest { subject.onRequestAddress(zipcode = "01001-000") }
 
         // When
-        subject.onSaveLocallAddress()
+        subject.onSaveLocalAddress()
 
         // Then
         runTest {

@@ -4,12 +4,13 @@ import com.fappslab.viacep.arch.rules.DispatcherTestRule
 import com.fappslab.viacep.arch.rules.RemoteTestRule
 import com.fappslab.viacep.form.data.moddel.extension.toAddress
 import com.fappslab.viacep.form.data.service.FormService
-import com.fappslab.viacep.form.data.source.FormDataSourceImpl
+import com.fappslab.viacep.form.data.source.remote.FormRemoteDataSourceImpl
 import com.fappslab.viacep.form.domain.repository.FormRepository
-import com.fappslab.viacep.remote.exception.ApplicationThrowable.ApiServiceThrowable
+import com.fappslab.viacep.remote.exception.RemoteThrowable.ApiServiceThrowable
 import com.fappslab.viacep.remote.stubmockprovider.StubResponse.addressResponse
 import com.fappslab.viacep.remote.stubmockprovider.StubResponse.failureBodyResponse
 import com.fappslab.viacep.remote.stubmockprovider.StubResponse.successBodyResponse
+import io.mockk.mockk
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.Before
@@ -21,7 +22,7 @@ import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
 
 @ExperimentalCoroutinesApi
-internal class FormRepositoryImplIntegrationTest {
+internal class FormRepositoryImplRemoteIntegrationTest {
 
     @get:Rule
     val dispatcherRule = DispatcherTestRule()
@@ -37,10 +38,11 @@ internal class FormRepositoryImplIntegrationTest {
         service = remoteRule.createTestService()
 
         subject = FormRepositoryImpl(
-            dataSource = FormDataSourceImpl(
+            remoteDataSource = FormRemoteDataSourceImpl(
                 service = service,
                 dispatcher = dispatcherRule.testDispatcher
-            )
+            ),
+            localDataSource = mockk()
         )
     }
 

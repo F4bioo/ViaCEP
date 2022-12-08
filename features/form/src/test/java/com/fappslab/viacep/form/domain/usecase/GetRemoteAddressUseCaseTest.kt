@@ -4,7 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.fappslab.viacep.arch.rules.DispatcherTestRule
 import com.fappslab.viacep.form.data.moddel.extension.toAddress
 import com.fappslab.viacep.form.domain.repository.FormRepository
-import com.fappslab.viacep.remote.exception.ApplicationThrowable.ApiServiceThrowable
+import com.fappslab.viacep.remote.exception.RemoteThrowable.ApiServiceThrowable
 import com.fappslab.viacep.remote.stubmockprovider.StubResponse.addressResponse
 import io.mockk.clearAllMocks
 import io.mockk.coEvery
@@ -54,7 +54,7 @@ internal class GetRemoteAddressUseCaseTest {
             val result = subject(zipcode = "01001-000")
 
             // Then
-            coVerify(exactly = 1) { formRepository.getRemoteAddress(any()) }
+            coVerify { formRepository.getRemoteAddress(any()) }
             assertEquals(expectedResult, result)
         }
     }
@@ -86,7 +86,7 @@ internal class GetRemoteAddressUseCaseTest {
             val result = assertFailsWith<ApiServiceThrowable> { subject(zipcode = "01001-000") }
 
             // Then
-            coVerify(exactly = 1) { formRepository.getRemoteAddress(any()) }
+            coVerify { formRepository.getRemoteAddress(any()) }
             assertEquals(expectedResult, result.error)
         }
     }

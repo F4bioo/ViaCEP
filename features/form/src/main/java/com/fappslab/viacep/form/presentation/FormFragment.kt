@@ -54,7 +54,7 @@ class FormFragment : Fragment(R.layout.form_fragment) {
         inputState.addTextChangedListener { viewModel.onTextChangedState(it.toString()) }
         inputAreaCode.addTextChangedListener { viewModel.onTextChangedAreaCode(it.toString()) }
         inputLayoutZipcode.setEndIconOnClickListener { viewModel.onRequestAddress(inputZipcode.text.toString()) }
-        buttonSave.setOnClickListener { viewModel.onSaveLocallAddress() }
+        buttonSave.setOnClickListener { viewModel.onSaveLocalAddress() }
     }
 
     private fun FormViewState.loadingState() {
