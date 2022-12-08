@@ -13,9 +13,9 @@ android {
 
 dependencies {
     // Libs
+    api(Libs.roomRuntime)
     implementation(Libs.coroutines)
     implementation(Libs.coroutinesCore)
-    implementation(Libs.roomRuntime)
     implementation(Libs.roomKtx)
     kapt(Libs.roomKapt)
 

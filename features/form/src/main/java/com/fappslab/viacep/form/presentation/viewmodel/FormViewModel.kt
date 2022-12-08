@@ -6,10 +6,12 @@ import com.fappslab.viacep.arch.viewmodel.ViewModel
 import com.fappslab.viacep.form.R
 import com.fappslab.viacep.form.domain.model.Address
 import com.fappslab.viacep.form.domain.usecase.GetRemoteAddressUseCase
+import com.fappslab.viacep.form.domain.usecase.SetLocalAddressUseCase
 import kotlinx.coroutines.launch
 
 class FormViewModel(
     private val getRemoteAddressUseCase: GetRemoteAddressUseCase,
+    private val setLocalAddressUseCase: SetLocalAddressUseCase
 ) : ViewModel<FormViewState, FormViewAction>(FormViewState()) {
 
     fun onRequestAddress(zipcode: String) {
@@ -44,6 +46,29 @@ class FormViewModel(
         }
     }
 
+    private fun saveAddress(address: Address) {
+        viewModelScope.launch {
+            onState {
+                it.copy(shouldShowLoading = true)
+            }.runCatching {
+                setLocalAddressUseCase(address)
+            }.apply {
+                onState { it.copy(shouldShowLoading = false) }
+            }.fold(
+                onFailure = ::setAddressFailure,
+                onSuccess = { setAddressSuccess() }
+            )
+        }
+    }
+
+    private fun setAddressFailure(cause: Throwable) {
+        onState { it.errorUpdate(shouldShowError = true, errorMessage = cause.message) }
+    }
+
+    private fun setAddressSuccess() {
+        onAction { FormViewAction.ClearForm }
+    }
+
     fun onTextChangedZipcode(zipcode: String) {
         onState { it.copy(zipcode = zipcode) }
     }
@@ -68,9 +93,18 @@ class FormViewModel(
         onState { it.copy(areaCode = areaCode) }
     }
 
-    fun onSaveLocallAddress() {
+    fun onSaveLocalAddress() {
         if (areInputsPopulated()) {
-            onAction { FormViewAction.ClearForm }
+            state.value.apply {
+                Address(
+                    zipcode = zipcode.orEmpty(),
+                    street = street.orEmpty(),
+                    district = district.orEmpty(),
+                    city = city.orEmpty(),
+                    state = state.orEmpty(),
+                    areaCode = areaCode.orEmpty()
+                ).also(::saveAddress)
+            }
         }
     }
 

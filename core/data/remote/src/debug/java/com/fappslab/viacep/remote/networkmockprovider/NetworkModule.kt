@@ -7,20 +7,13 @@ import okhttp3.HttpUrl
 import org.koin.core.module.Module
 import org.koin.dsl.module
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
-fun provideNetworkModule(
-    httpUrl: HttpUrl
-) = networkTestModule(httpUrl)
+fun provideNetworkModule(httpUrl: HttpUrl): Module = module {
 
-private fun networkTestModule(
-    httpUrl: HttpUrl,
-): Module = module {
     factory<Retrofit> {
         Retrofit.Builder()
             .baseUrl(httpUrl)
-            .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
 

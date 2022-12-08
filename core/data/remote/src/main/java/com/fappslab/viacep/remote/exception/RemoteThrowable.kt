@@ -12,21 +12,21 @@ internal const val UNEXPECTED_DEFAULT_ERROR_MESSAGE =
 internal const val API_DEFAULT_ERROR_MESSAGE =
     "Our system was unable to process your request. Please check the data sent and try again."
 
-sealed class ApplicationThrowable(cause: Throwable?) : Throwable(cause) {
+sealed class RemoteThrowable(cause: Throwable?) : Throwable(cause) {
 
     class ConnectionThrowable(
         @Expose override val message: String? = CONNECTION_DEFAULT_ERROR_MESSAGE,
         throwable: Throwable? = null
-    ) : ApplicationThrowable(throwable)
+    ) : RemoteThrowable(throwable)
 
     class ServerThrowable(
         @Expose override val message: String? = UNEXPECTED_DEFAULT_ERROR_MESSAGE,
         throwable: Throwable? = null
-    ) : ApplicationThrowable(throwable)
+    ) : RemoteThrowable(throwable)
 
     data class ApiServiceThrowable(
         @SerializedName("erro") val error: Boolean? = null,
         @SerializedName("message") override val message: String? = API_DEFAULT_ERROR_MESSAGE,
         @Expose private val throwable: Throwable? = null
-    ) : ApplicationThrowable(throwable)
+    ) : RemoteThrowable(throwable)
 }
