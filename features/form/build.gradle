@@ -18,4 +18,5 @@ dependencies {
     implementation project(Modules.latteTools)
     implementation project(Modules.remote)
     implementation project(Modules.local)
+    implementation project(Modules.navigation)
 }

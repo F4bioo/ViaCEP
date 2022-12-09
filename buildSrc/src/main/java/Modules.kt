@@ -8,6 +8,7 @@ object Modules {
     // core
     const val local = ":core:data:local"
     const val remote = ":core:data:remote"
+    const val navigation = ":core:navigation"
 
     // features
     const val form = ":features:form"
