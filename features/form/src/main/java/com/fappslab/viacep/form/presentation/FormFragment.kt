@@ -5,6 +5,9 @@ import android.view.View
 import androidx.core.view.isInvisible
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
+import com.fappslab.viacep.arch.args.putArguments
+import com.fappslab.viacep.arch.args.viewArgs
+import com.fappslab.viacep.arch.args.withArgs
 import com.fappslab.viacep.arch.extension.moveCursorTodEnd
 import com.fappslab.viacep.arch.viewbinding.viewBinding
 import com.fappslab.viacep.arch.viewmodel.onViewAction
@@ -17,12 +20,14 @@ import com.fappslab.viacep.form.presentation.extension.showErrorDialog
 import com.fappslab.viacep.form.presentation.viewmodel.FormViewAction
 import com.fappslab.viacep.form.presentation.viewmodel.FormViewModel
 import com.fappslab.viacep.form.presentation.viewmodel.FormViewState
+import com.fappslab.viacep.navigation.FormType
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
-class FormFragment : Fragment(R.layout.form_fragment) {
+internal class FormFragment : Fragment(R.layout.form_fragment) {
 
     private val binding: FormFragmentBinding by viewBinding()
     private val viewModel: FormViewModel by sharedViewModel()
+    private val args: FormType by viewArgs()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -91,5 +96,10 @@ class FormFragment : Fragment(R.layout.form_fragment) {
         inputCity.clear()
         inputState.clear()
         inputAreaCode.clear()
+    }
+
+    companion object {
+        fun newInstance(formType: FormType): Fragment =
+            FormFragment().withArgs { putArguments(args = formType) }
     }
 }

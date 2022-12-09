@@ -7,9 +7,11 @@ import com.fappslab.viacep.form.data.source.local.FormLocalDataSourceImpl
 import com.fappslab.viacep.form.data.source.remote.FormRemoteDataSourceImpl
 import com.fappslab.viacep.form.domain.usecase.GetRemoteAddressUseCase
 import com.fappslab.viacep.form.domain.usecase.SetLocalAddressUseCase
+import com.fappslab.viacep.form.navigation.FormNavigationImpl
 import com.fappslab.viacep.form.presentation.viewmodel.FormViewModel
 import com.fappslab.viacep.local.client.Database
 import com.fappslab.viacep.local.database.FormDatabase
+import com.fappslab.viacep.navigation.FormNavigation
 import com.fappslab.viacep.remote.client.HttpClient
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.scope.Scope
@@ -24,6 +26,10 @@ object FormModule : KoinLoad() {
                 setLocalAddressUseCase = setLocalAddressUseCase()
             )
         }
+    }
+
+    override val additionalModule = module {
+        factory<FormNavigation> { FormNavigationImpl() }
     }
 
     private fun Scope.getRemoteAddressUseCase() =
