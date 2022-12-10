@@ -69,9 +69,9 @@ internal class FormRepositoryImplRemoteIntegrationTest {
             remoteRule.mockWebServerResponse(failureBodyResponse, code = HTTP_BAD_REQUEST)
 
             // When
-            val result = assertFailsWith<ApiServiceThrowable> {
+            val result = assertFailsWith {
                 subject.getRemoteAddress(zipcode = "01001-000")
-            }
+            } as ApiServiceThrowable
 
             // Then
             assertEquals(expectedResult, result.error)

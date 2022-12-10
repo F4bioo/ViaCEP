@@ -2,17 +2,13 @@ package com.fappslab.viacep.form.presentation.viewmodel
 
 import androidx.annotation.StringRes
 import com.fappslab.viacep.arch.viewmodel.ViewState
+import com.fappslab.viacep.form.presentation.model.AddressArgs
 
 data class FormViewState(
+    val address: AddressArgs = AddressArgs(),
     val shouldShowLoading: Boolean = false,
     val shouldShowError: Boolean = false,
     val errorMessage: String? = null,
-    val zipcode: String? = null,
-    val street: String? = null,
-    val district: String? = null,
-    val city: String? = null,
-    val state: String? = null,
-    val areaCode: String? = null,
     @StringRes val streetErrorRes: Int? = null,
     @StringRes val districtErrorRes: Int? = null,
     @StringRes val cityErrorRes: Int? = null,
@@ -20,11 +16,13 @@ data class FormViewState(
     @StringRes val areaCodeErrorRes: Int? = null
 ) : ViewState {
 
-    fun errorUpdate(
-        shouldShowError: Boolean,
-        errorMessage: String?
-    ) = copy(
-        shouldShowError = shouldShowError,
+    fun showErrorState(errorMessage: String?) = copy(
+        shouldShowError = true,
         errorMessage = errorMessage
+    )
+
+    fun hideErrorState() = copy(
+        shouldShowError = false,
+        errorMessage = null
     )
 }

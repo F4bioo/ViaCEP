@@ -16,11 +16,14 @@ internal class FormRepositoryImpl(
     override suspend fun getRemoteAddress(zipcode: String): Address =
         remoteDataSource.getAddress(zipcode).mapCatching { it.toAddress() }.getOrThrow()
 
-    override suspend fun getLocalAddresses(): List<Address> =
-        localDataSource.getAddresses().mapCatching { it.toAddresses() }.getOrThrow()
+    override suspend fun getLocalAddress(zipcode: String): Address =
+        localDataSource.getAddress(zipcode).mapCatching { it.toAddress() }.getOrThrow()
 
     override suspend fun setLocalAddress(address: Address): Unit =
         localDataSource.setAddress(address.toAddressEntity()).getOrThrow()
+
+    override suspend fun getLocalAddresses(): List<Address> =
+        localDataSource.getAddresses().mapCatching { it.toAddresses() }.getOrThrow()
 
     override suspend fun deleteLocalAddress(zipcode: String): Unit =
         localDataSource.deleteAddress(zipcode).getOrThrow()

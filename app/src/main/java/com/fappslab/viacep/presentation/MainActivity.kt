@@ -8,7 +8,6 @@ import com.fappslab.viacep.arch.viewbinding.viewBinding
 import com.fappslab.viacep.databinding.ActivityMainBinding
 import com.fappslab.viacep.form.presentation.viewmodel.FormViewModel
 import com.fappslab.viacep.navigation.FormNavigation
-import com.fappslab.viacep.navigation.FormType
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -22,7 +21,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         super.onCreate(savedInstanceState)
 
         supportFragmentManager.commit {
-            replace(binding.containerFragment.id, formNavigation.newInstance(FormType.Add))
+            replace(binding.containerFragment.id, formNavigation.newInstance())
         }
     }
 

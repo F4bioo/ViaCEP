@@ -17,17 +17,19 @@ import com.fappslab.viacep.form.databinding.FormFragmentBinding
 import com.fappslab.viacep.form.presentation.extension.clear
 import com.fappslab.viacep.form.presentation.extension.errorState
 import com.fappslab.viacep.form.presentation.extension.showErrorDialog
+import com.fappslab.viacep.form.presentation.model.AddressArgs
 import com.fappslab.viacep.form.presentation.viewmodel.FormViewAction
 import com.fappslab.viacep.form.presentation.viewmodel.FormViewModel
 import com.fappslab.viacep.form.presentation.viewmodel.FormViewState
-import com.fappslab.viacep.navigation.FormType
+import com.fappslab.viacep.navigation.ZipcodeArgs
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import org.koin.core.parameter.parametersOf
 
 internal class FormFragment : Fragment(R.layout.form_fragment) {
 
     private val binding: FormFragmentBinding by viewBinding()
-    private val viewModel: FormViewModel by sharedViewModel()
-    private val args: FormType by viewArgs()
+    private val viewModel: FormViewModel by sharedViewModel { parametersOf(args, AddressArgs()) }
+    private val args: ZipcodeArgs by viewArgs()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -38,7 +40,7 @@ internal class FormFragment : Fragment(R.layout.form_fragment) {
     private fun setupObservables() {
         onViewState(viewModel) { state ->
             state.inputErrorState()
-            state.inputResultState()
+            state.address.inputResultState()
             state.showErrorState()
             state.loadingState()
         }
@@ -58,8 +60,8 @@ internal class FormFragment : Fragment(R.layout.form_fragment) {
         inputCity.addTextChangedListener { viewModel.onTextChangedCity(it.toString()) }
         inputState.addTextChangedListener { viewModel.onTextChangedState(it.toString()) }
         inputAreaCode.addTextChangedListener { viewModel.onTextChangedAreaCode(it.toString()) }
-        inputLayoutZipcode.setEndIconOnClickListener { viewModel.onRequestAddress(inputZipcode.text.toString()) }
-        buttonSave.setOnClickListener { viewModel.onSaveLocalAddress() }
+        inputLayoutZipcode.setEndIconOnClickListener { viewModel.onGetRemoteAddress(inputZipcode.text.toString()) }
+        buttonSave.setOnClickListener { viewModel.onSetLocalAddress() }
     }
 
     private fun FormViewState.loadingState() {
@@ -80,7 +82,7 @@ internal class FormFragment : Fragment(R.layout.form_fragment) {
         inputAreaCode.errorState(areaCodeErrorRes)
     }
 
-    private fun FormViewState.inputResultState() = binding.run {
+    private fun AddressArgs.inputResultState() = binding.run {
         inputZipcode.apply { setText(zipcode) }.moveCursorTodEnd()
         inputStreet.apply { setText(street) }.moveCursorTodEnd()
         inputDistrict.apply { setText(district) }.moveCursorTodEnd()
@@ -99,7 +101,7 @@ internal class FormFragment : Fragment(R.layout.form_fragment) {
     }
 
     companion object {
-        fun newInstance(formType: FormType): Fragment =
-            FormFragment().withArgs { putArguments(args = formType) }
+        fun newInstance(args: ZipcodeArgs = ZipcodeArgs()): Fragment =
+            FormFragment().withArgs { putArguments(args) }
     }
 }

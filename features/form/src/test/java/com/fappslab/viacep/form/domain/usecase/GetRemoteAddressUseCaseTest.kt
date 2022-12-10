@@ -3,6 +3,7 @@ package com.fappslab.viacep.form.domain.usecase
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.fappslab.viacep.arch.rules.DispatcherTestRule
 import com.fappslab.viacep.form.data.moddel.extension.toAddress
+import com.fappslab.viacep.form.domain.model.Address
 import com.fappslab.viacep.form.domain.repository.FormRepository
 import com.fappslab.viacep.remote.exception.RemoteThrowable.ApiServiceThrowable
 import com.fappslab.viacep.remote.stubmockprovider.StubResponse.addressResponse
@@ -63,10 +64,12 @@ internal class GetRemoteAddressUseCaseTest {
     fun `getRemoteAddressFailure Should return error When invoke getAddress with blank param`() {
         runTest {
             // Given
-            val expectedResult = ERROR_MESSAGE
+            val expectedResult = EMPTY_FIELD_ERROR_MESSAGE
 
             // When
-            val result = assertFailsWith<IllegalArgumentException> { subject(zipcode = "") }
+            val result = assertFailsWith {
+                subject(zipcode = "")
+            } as IllegalArgumentException
 
             // Then
             assertEquals(expectedResult, result.message)
@@ -83,11 +86,39 @@ internal class GetRemoteAddressUseCaseTest {
             } throws ApiServiceThrowable(error = true)
 
             // When
-            val result = assertFailsWith<ApiServiceThrowable> { subject(zipcode = "01001-000") }
+            val result = assertFailsWith {
+                subject(zipcode = "01001-000")
+            } as ApiServiceThrowable
 
             // Then
             coVerify { formRepository.getRemoteAddress(any()) }
             assertEquals(expectedResult, result.error)
+        }
+    }
+
+    @Test
+    fun `getRemoteAddressFailure Should return failure result When invoke getAddress return blank address`() {
+        runTest {
+            // Given
+            val address = Address(
+                zipcode = "01001-000",
+                street = "",
+                district = "",
+                city = "",
+                state = "",
+                areaCode = ""
+            )
+            val expectedResult = EMPTY_RESULT_ERROR_MESSAGE
+            coEvery { formRepository.getRemoteAddress(any()) } returns address
+
+            // When
+            val result = assertFailsWith {
+                subject(zipcode = "01001-000")
+            } as IllegalArgumentException
+
+            // Then
+            coVerify { formRepository.getRemoteAddress(any()) }
+            assertEquals(expectedResult, result.message)
         }
     }
 }

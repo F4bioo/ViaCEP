@@ -42,7 +42,21 @@ internal class FormRepositoryImplLocalIntegrationTest {
     }
 
     @Test
-    fun getLocalAddressSuccess_Should_return_address_list_When_invoke_getLocalAddresses_from_database() {
+    fun getLocalAddressSuccess_Should_return_address_list_When_invoke_getLocalAddress_from_database() {
+        runTest {
+            // Given
+            val expectedAddress = addressResponse.toAddress().setAddress()
+
+            // When
+            val result = subject.getLocalAddress(zipcode = "01001-000")
+
+            // Then
+            assertEquals(expectedAddress, result)
+        }
+    }
+
+    @Test
+    fun getLocalAddressesSuccess_Should_return_address_list_When_invoke_getLocalAddresses_from_database() {
         runTest {
             // Given
             val address = addressResponse.toAddress()

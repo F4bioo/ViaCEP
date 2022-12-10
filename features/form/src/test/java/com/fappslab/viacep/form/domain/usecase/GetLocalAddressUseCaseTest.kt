@@ -5,7 +5,7 @@ import com.fappslab.viacep.arch.rules.DispatcherTestRule
 import com.fappslab.viacep.form.data.moddel.extension.toAddress
 import com.fappslab.viacep.form.domain.repository.FormRepository
 import com.fappslab.viacep.local.exception.CacheThrowable
-import com.fappslab.viacep.remote.stubmockprovider.StubResponse
+import com.fappslab.viacep.remote.stubmockprovider.StubResponse.addressResponse
 import io.mockk.clearAllMocks
 import io.mockk.coEvery
 import io.mockk.coVerify
@@ -20,7 +20,7 @@ import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
 
 @ExperimentalCoroutinesApi
-internal class SetLocalAddressUseCaseTest {
+internal class GetLocalAddressUseCaseTest {
 
     @get:Rule
     val executorRule = InstantTaskExecutorRule()
@@ -29,11 +29,11 @@ internal class SetLocalAddressUseCaseTest {
     val dispatcherRule = DispatcherTestRule()
 
     private val formRepository: FormRepository = mockk()
-    private lateinit var subject: SetLocalAddressUseCase
+    private lateinit var subject: GetLocalAddressUseCase
 
     @Before
     fun setUp() {
-        subject = SetLocalAddressUseCase(
+        subject = GetLocalAddressUseCase(
             repository = formRepository
         )
     }
@@ -44,39 +44,37 @@ internal class SetLocalAddressUseCaseTest {
     }
 
     @Test
-    fun `setLocalAddressSuccess Should return success result When invoke setAddress`() {
+    fun `getLocalAddressSuccess Should return success result When invoke getAddress`() {
         runTest {
             // Given
-            val address = StubResponse.addressResponse.toAddress()
-            val expectedResult = Unit
-            coEvery { formRepository.setLocalAddress(any()) } returns Unit
+            val expectedResult = addressResponse.toAddress()
+            coEvery { formRepository.getLocalAddress(any()) } returns expectedResult
 
             // When
-            val result = subject(address)
+            val result = subject(zipcode = "01001-000")
 
             // Then
-            coVerify { formRepository.setLocalAddress(any()) }
+            coVerify { formRepository.getLocalAddress(any()) }
             assertEquals(expectedResult, result)
         }
     }
 
     @Test
-    fun `setLocalAddressFailure Should return failure result When invoke setAddress`() {
+    fun `getLocalAddressFailure Should return failure result When invoke getAddress`() {
         runTest {
             // Given
             val throwable = CacheThrowable("Error message")
-            val address = StubResponse.addressResponse.toAddress()
             coEvery {
-                formRepository.setLocalAddress(any())
+                formRepository.getLocalAddress(any())
             } throws throwable
 
             // When
             val result = assertFailsWith {
-                subject(address)
+                subject(zipcode = "01001-000")
             } as CacheThrowable
 
             // Then
-            coVerify { formRepository.setLocalAddress(any()) }
+            coVerify { formRepository.getLocalAddress(any()) }
             assertEquals(throwable.message, result.message)
         }
     }

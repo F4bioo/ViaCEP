@@ -6,9 +6,11 @@ interface FormRepository {
 
     suspend fun getRemoteAddress(zipcode: String): Address
 
-    suspend fun getLocalAddresses(): List<Address>
+    suspend fun getLocalAddress(zipcode: String): Address
 
     suspend fun setLocalAddress(address: Address)
+
+    suspend fun getLocalAddresses(): List<Address>
 
     suspend fun deleteLocalAddress(zipcode: String)
 }
