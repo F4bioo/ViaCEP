@@ -10,17 +10,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/scroll_form"
-        app:layout_constraintEnd_toEndOf="@+id/scroll_form"
-        app:layout_constraintStart_toStartOf="@+id/scroll_form"
-        app:layout_constraintTop_toTopOf="@+id/scroll_form" />
+        app:layout_constraintBottom_toBottomOf="@id/scroll_form"
+        app:layout_constraintEnd_toEndOf="@id/scroll_form"
+        app:layout_constraintStart_toStartOf="@id/scroll_form"
+        app:layout_constraintTop_toTopOf="@id/scroll_form" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/input_layout_zipcode"
         style="@style/DsTextInputLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/ds_size_10"
         app:endIconDrawable="@drawable/ds_ic_search"
         app:endIconMode="custom"
         app:layout_constraintEnd_toEndOf="parent"
@@ -34,7 +33,7 @@
             android:layout_marginEnd="@dimen/ds_size_02"
             android:digits="0123456789-"
             android:drawableEnd="@drawable/ds_ic_search"
-            android:hint="Zip code"
+            android:hint="@string/form_zip_code"
             android:inputType="number"
             android:maxLength="9"
             app:layout_constraintEnd_toEndOf="parent"
@@ -48,10 +47,10 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginVertical="@dimen/ds_size_02"
-        app:layout_constraintBottom_toTopOf="@id/button_save"
+        app:layout_constraintBottom_toTopOf="@+id/button_save"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/input_layout_zipcode">
+        app:layout_constraintTop_toBottomOf="@id/input_layout_zipcode">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -62,7 +61,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/ds_size_04"
-                android:hint="Street"
+                android:hint="@string/form_street"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -72,7 +71,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/ds_size_04"
-                android:hint="District"
+                android:hint="@string/form_district"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/input_street" />
@@ -82,7 +81,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/ds_size_04"
-                android:hint="City"
+                android:hint="@string/form_city"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/input_district" />
@@ -92,8 +91,10 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/ds_size_04"
-                android:hint="State"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="@dimen/ds_size_02"
+                android:hint="@string/form_state"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/input_area_code"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/input_city" />
 
@@ -101,12 +102,12 @@
                 android:id="@+id/input_area_code"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/ds_size_04"
-                android:hint="Area code"
+                android:layout_marginStart="@dimen/ds_size_02"
+                android:hint="@string/form_area_code"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/input_state" />
+                app:layout_constraintStart_toEndOf="@id/input_state"
+                app:layout_constraintTop_toTopOf="@id/input_state" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -116,7 +117,7 @@
         android:id="@+id/button_save"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Salvar"
+        android:text="@string/common_save"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
