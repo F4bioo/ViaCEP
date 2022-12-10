@@ -31,6 +31,6 @@ fun Address.toAddressEntity() = AddressEntity(
     areaCode = areaCode
 )
 
-fun List<AddressEntity>?.toAddresses() = this?.map {
+fun List<AddressEntity>.toAddresses() = map {
     it.toAddress()
-}.orEmpty()
+}

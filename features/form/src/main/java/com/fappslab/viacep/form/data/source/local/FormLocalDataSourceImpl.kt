@@ -12,14 +12,19 @@ internal class FormLocalDataSourceImpl(
     private val dispatcher: CoroutineDispatcher = Dispatchers.IO,
 ) : FormLocalDataSource {
 
-    override suspend fun getAddresses(): Result<List<AddressEntity>?> =
+    override suspend fun getAddress(zipcode: String): Result<AddressEntity> =
         dispatcher.runFetch {
-            database.formDao().getAddresses()
+            database.formDao().getAddress(zipcode)
         }.orParseCacheError()
 
     override suspend fun setAddress(address: AddressEntity): Result<Unit> =
         dispatcher.runFetch {
             database.formDao().setAddress(address)
+        }.orParseCacheError()
+
+    override suspend fun getAddresses(): Result<List<AddressEntity>> =
+        dispatcher.runFetch {
+            database.formDao().getAddresses()
         }.orParseCacheError()
 
     override suspend fun deleteAddress(zipcode: String): Result<Unit> =

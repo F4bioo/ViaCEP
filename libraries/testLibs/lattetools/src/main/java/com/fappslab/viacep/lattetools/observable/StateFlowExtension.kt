@@ -5,16 +5,15 @@ import com.fappslab.viacep.arch.viewmodel.ViewAction
 import com.fappslab.viacep.arch.viewmodel.ViewModel
 import com.fappslab.viacep.arch.viewmodel.ViewState
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.test.TestScope
-import kotlinx.coroutines.test.UnconfinedTestDispatcher
+import kotlinx.coroutines.test.runCurrent
 
 @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
 @ExperimentalCoroutinesApi
-fun <S : ViewState, A : ViewAction> ViewModel<S, A>.onStateTest(
-    onEachBlock: (S) -> Unit
-): Job = state.onEach {
-    onEachBlock(it)
-}.launchIn(scope = TestScope(UnconfinedTestDispatcher()))
+suspend fun <S : ViewState, A : ViewAction> TestScope.stateTest(
+    viewModel: ViewModel<S, A>,
+    stateBlock: suspend (S) -> Unit
+) {
+    runCurrent()
+    stateBlock(viewModel.state.value)
+}
