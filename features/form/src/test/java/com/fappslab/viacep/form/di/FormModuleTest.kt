@@ -34,6 +34,6 @@ internal class FormModuleTest : KoinModuleTest(FormModule) {
 
     @Test
     fun `checkModules Should Koin provides dependencies When invoke FormModule`() {
-        startKoinTest { create<FormViewModel> { parametersOf(ZipcodeArgs()) } }
+        startKoinTest { create<FormViewModel> { parametersOf(ZipcodeArgs(zipcode = "")) } }
     }
 }

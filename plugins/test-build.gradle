@@ -37,6 +37,8 @@ dependencies {
     androidTestImplementation(TestLibs.extJunitKtxTest)
     androidTestImplementation(TestLibs.espressoCoreTest)
     androidTestImplementation(TestLibs.mockkAndroidTest)
+    androidTestImplementation(TestLibs.okhttpTest)
+    androidTestImplementation(TestLibs.mockWebserverTest)
     androidTestImplementation(TestLibs.mockitoAndroidTest) {
         exclude group: "net.bytebuddy", module: "byte-buddy-android"
     }

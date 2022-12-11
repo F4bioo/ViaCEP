@@ -12,4 +12,4 @@ fun <F : Fragment> F.withArgs(args: Bundle.() -> Unit): F = apply {
 fun <P : Parcelable> Fragment.viewArgs(): ReadOnlyProperty<Fragment, P> =
     ArgsProperty { fragment -> fragment.arguments }
 
-fun Bundle.putArguments(args: Parcelable): Unit = putParcelable(KEY_ARG, args)
+fun Bundle.putArguments(args: Parcelable): Unit = putParcelable(KEY_ARGS, args)

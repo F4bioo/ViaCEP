@@ -2,4 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.fappslab.viacep.editor">
 
+    <application android:theme="@style/Theme.Ds">
+        <activity
+            android:name=".presentation.EditorActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+    </application>
+
 </manifest>
