@@ -30,7 +30,7 @@ internal class EditorActivity : AppCompatActivity(R.layout.editor_activity) {
     }
 
     companion object {
-        fun createIntent(context: Context, args: ZipcodeArgs): Intent =
+        fun newInstance(context: Context, args: ZipcodeArgs): Intent =
             context.createIntent<EditorActivity> { putArguments(args) }
     }
 }

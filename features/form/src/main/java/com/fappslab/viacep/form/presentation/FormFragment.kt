@@ -101,7 +101,7 @@ internal class FormFragment : Fragment(R.layout.form_fragment) {
     }
 
     companion object {
-        fun newInstance(args: ZipcodeArgs = ZipcodeArgs()): Fragment =
+        fun newInstance(args: ZipcodeArgs): Fragment =
             FormFragment().withArgs { putArguments(args) }
     }
 }

@@ -6,10 +6,10 @@ import kotlinx.parcelize.Parcelize
 
 interface FormNavigation {
 
-    fun newInstance(args: ZipcodeArgs = ZipcodeArgs()): Fragment
+    fun newInstance(args: ZipcodeArgs = ZipcodeArgs(zipcode = "")): Fragment
 }
 
 @Parcelize
 data class ZipcodeArgs(
-    val zipcode: String = ""
+    val zipcode: String
 ) : Parcelable

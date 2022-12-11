@@ -348,7 +348,7 @@ internal class FormViewModelTest {
 
     private fun setupSubject(shouldMockInitBlock: Boolean = false) {
         val zipcodeArgs = ZipcodeArgs(zipcode = "01001-000")
-            .takeIf { shouldMockInitBlock } ?: ZipcodeArgs()
+            .takeIf { shouldMockInitBlock } ?: ZipcodeArgs(zipcode = "")
 
         subject = FormViewModel(
             args = zipcodeArgs,
