@@ -11,5 +11,6 @@ object Modules {
     const val navigation = ":core:navigation"
 
     // features
+    const val editor = ":features:editor"
     const val form = ":features:form"
 }
