@@ -1,6 +1,7 @@
 package com.fappslab.viacep.form.presentation.viewmodel
 
 import androidx.lifecycle.viewModelScope
+import com.fappslab.viacep.arch.extension.toZipcodeFormatter
 import com.fappslab.viacep.arch.viewmodel.ViewModel
 import com.fappslab.viacep.form.domain.usecase.GetLocalAddressUseCase
 import com.fappslab.viacep.form.domain.usecase.GetRemoteAddressUseCase
@@ -70,27 +71,32 @@ class FormViewModel(
     }
 
     fun onTextChangedZipcode(zipcode: String) {
-        onState { it.copy(address = address.copy(zipcode = zipcode)) }
+        onState { it.copy(address = address.copy(zipcode = zipcode.toZipcodeFormatter())) }
     }
 
-    fun onTextChangedStreet(street: String) {
-        onState { it.copy(address = address.copy(street = street)) }
+    fun onTextChangedStreet(street: String) = onState {
+        it.copy(address = address.copy(street = street.trim()))
+            .run { if (street.isNotBlank()) copy(streetErrorRes = null) else this }
     }
 
-    fun onTextChangedDistrict(district: String) {
-        onState { it.copy(address = address.copy(district = district)) }
+    fun onTextChangedDistrict(district: String) = onState {
+        it.copy(address = address.copy(district = district.trim()))
+            .run { if (district.isNotBlank()) copy(districtErrorRes = null) else this }
     }
 
-    fun onTextChangedCity(city: String) {
-        onState { it.copy(address = address.copy(city = city)) }
+    fun onTextChangedCity(city: String) = onState {
+        it.copy(address = address.copy(city = city.trim()))
+            .run { if (city.isNotBlank()) copy(cityErrorRes = null) else this }
     }
 
-    fun onTextChangedState(state: String) {
-        onState { it.copy(address = address.copy(state = state)) }
+    fun onTextChangedState(state: String) = onState {
+        it.copy(address = address.copy(state = state.trim()))
+            .run { if (state.isNotBlank()) copy(stateErrorRes = null) else this }
     }
 
-    fun onTextChangedAreaCode(areaCode: String) {
-        onState { it.copy(address = address.copy(areaCode = areaCode)) }
+    fun onTextChangedAreaCode(areaCode: String) = onState {
+        it.copy(address = address.copy(areaCode = areaCode.trim()))
+            .run { if (areaCode.isNotBlank()) copy(areaCodeErrorRes = null) else this }
     }
 
     fun onCloseError() {

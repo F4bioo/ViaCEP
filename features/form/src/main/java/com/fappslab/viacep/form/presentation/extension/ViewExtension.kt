@@ -4,10 +4,11 @@ import android.widget.EditText
 import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 import com.fappslab.viacep.arch.extension.isNull
-import com.fappslab.viacep.design.R
 import com.fappslab.viacep.design.dsdialogsm.build
 import com.fappslab.viacep.design.dsdialogsm.dsDialogSm
+import com.fappslab.viacep.form.R
 import com.fappslab.viacep.form.presentation.viewmodel.FormViewState
+import com.fappslab.viacep.design.R as DS
 
 internal fun Fragment.showErrorDialog(
     shouldShowError: Boolean,
@@ -15,7 +16,7 @@ internal fun Fragment.showErrorDialog(
     onCloseAction: () -> Unit
 ) {
     dsDialogSm {
-        titleRes = R.string.common_error_title
+        titleRes = DS.string.common_error_title
         messageText = message
         isCancelable = false
         buttonClose = onCloseAction::invoke
@@ -30,16 +31,16 @@ internal fun EditText.clear() =
     text?.clear()
 
 internal fun FormViewState.addressFormValidation(): Pair<FormViewState, Boolean> {
-    val streetErrorRes = com.fappslab.viacep.form.R.string.form_check_field_street_blank_error
-        .takeIf { address.street.isEmpty() }
-    val districtErrorRes = com.fappslab.viacep.form.R.string.form_check_field_district_blank_error
-        .takeIf { address.district.isEmpty() }
-    val cityErrorRes = com.fappslab.viacep.form.R.string.form_check_field_city_blank_error
-        .takeIf { address.city.isEmpty() }
-    val stateErrorRes = com.fappslab.viacep.form.R.string.form_check_field_state_blank_error
-        .takeIf { address.state.isEmpty() }
-    val areaCodeErrorRes = com.fappslab.viacep.form.R.string.form_check_field_area_code_blank_error
-        .takeIf { address.areaCode.isEmpty() }
+    val streetErrorRes = R.string.form_check_field_street_blank_error
+        .takeIf { address.street.isBlank() }
+    val districtErrorRes = R.string.form_check_field_district_blank_error
+        .takeIf { address.district.isBlank() }
+    val cityErrorRes = R.string.form_check_field_city_blank_error
+        .takeIf { address.city.isBlank() }
+    val stateErrorRes = R.string.form_check_field_state_blank_error
+        .takeIf { address.state.isBlank() }
+    val areaCodeErrorRes = R.string.form_check_field_area_code_blank_error
+        .takeIf { address.areaCode.isBlank() }
 
     return copy(
         streetErrorRes = streetErrorRes,

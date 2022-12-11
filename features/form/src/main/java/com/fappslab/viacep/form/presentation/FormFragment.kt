@@ -9,6 +9,7 @@ import com.fappslab.viacep.arch.args.putArguments
 import com.fappslab.viacep.arch.args.viewArgs
 import com.fappslab.viacep.arch.args.withArgs
 import com.fappslab.viacep.arch.extension.moveCursorTodEnd
+import com.fappslab.viacep.arch.extension.setOnBackPressedDispatcher
 import com.fappslab.viacep.arch.viewbinding.viewBinding
 import com.fappslab.viacep.arch.viewmodel.onViewAction
 import com.fappslab.viacep.arch.viewmodel.onViewState
@@ -40,7 +41,7 @@ internal class FormFragment : Fragment(R.layout.form_fragment) {
     private fun setupObservables() {
         onViewState(viewModel) { state ->
             state.inputErrorState()
-            state.address.inputResultState()
+            state.inputResultState()
             state.showErrorState()
             state.loadingState()
         }
@@ -54,6 +55,7 @@ internal class FormFragment : Fragment(R.layout.form_fragment) {
     }
 
     private fun setupListeners() = binding.run {
+        setOnBackPressedDispatcher { viewModel.onFinishView() }
         inputZipcode.addTextChangedListener { viewModel.onTextChangedZipcode(it.toString()) }
         inputStreet.addTextChangedListener { viewModel.onTextChangedStreet(it.toString()) }
         inputDistrict.addTextChangedListener { viewModel.onTextChangedDistrict(it.toString()) }
@@ -69,9 +71,7 @@ internal class FormFragment : Fragment(R.layout.form_fragment) {
     }
 
     private fun FormViewState.showErrorState() {
-        showErrorDialog(shouldShowError, errorMessage) {
-            viewModel.onCloseError()
-        }
+        showErrorDialog(shouldShowError, errorMessage) { viewModel.onCloseError() }
     }
 
     private fun FormViewState.inputErrorState() = binding.run {
@@ -82,13 +82,13 @@ internal class FormFragment : Fragment(R.layout.form_fragment) {
         inputAreaCode.errorState(areaCodeErrorRes)
     }
 
-    private fun AddressArgs.inputResultState() = binding.run {
-        inputZipcode.apply { setText(zipcode) }.moveCursorTodEnd()
-        inputStreet.apply { setText(street) }.moveCursorTodEnd()
-        inputDistrict.apply { setText(district) }.moveCursorTodEnd()
-        inputCity.apply { setText(city) }.moveCursorTodEnd()
-        inputState.apply { setText(state) }.moveCursorTodEnd()
-        inputAreaCode.apply { setText(areaCode) }.moveCursorTodEnd()
+    private fun FormViewState.inputResultState() = binding.run {
+        inputZipcode.apply { setText(address.zipcode) }.moveCursorTodEnd()
+        inputStreet.apply { setText(address.street) }.moveCursorTodEnd()
+        inputDistrict.apply { setText(address.district) }.moveCursorTodEnd()
+        inputCity.apply { setText(address.city) }.moveCursorTodEnd()
+        inputState.apply { setText(address.state) }.moveCursorTodEnd()
+        inputAreaCode.apply { setText(address.areaCode) }.moveCursorTodEnd()
     }
 
     private fun clearFormAction() = binding.run {
