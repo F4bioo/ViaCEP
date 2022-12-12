@@ -16,9 +16,9 @@ rootProject.name = "ViaCEP"
 include ':app',
         ':core:data:local',
         ':core:data:remote',
-        ':core:navigation',
+        ':core:common:form',
+        ':core:common:navigation',
         ':features:editor',
-        ':features:form',
         ':libraries:arch',
         ':libraries:design',
         ':libraries:testLibs:lattetools'
