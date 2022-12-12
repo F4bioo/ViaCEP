@@ -4,13 +4,15 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/AndroidStudioProjects/ViaCEP/app/src/main/res/layout/activity_main.xml" value="0.21927083333333333" />
-        <entry key="..\:/AndroidStudioProjects/ViaCEP/features/editor/src/main/res/layout/editor_activity.xml" value="0.21927083333333333" />
-        <entry key="..\:/AndroidStudioProjects/ViaCEP/features/editor/src/main/res/layout/editor_bottom_sheet.xml" value="0.1" />
+        <entry key="..\:/AndroidStudioProjects/ViaCEP/features/editor/src/main/res/layout/editor_activity.xml" value="0.16" />
+        <entry key="..\:/AndroidStudioProjects/ViaCEP/features/editor/src/main/res/layout/editor_bottom_sheet.xml" value="0.16" />
         <entry key="..\:/AndroidStudioProjects/ViaCEP/features/form/src/main/res/layout/form_fragment.xml" value="0.2" />
         <entry key="..\:/AndroidStudioProjects/ViaCEP/features/form/src/main/res/layout/temprory.xml" value="0.21822916666666667" />
+        <entry key="..\:/AndroidStudioProjects/ViaCEP/libraries/design/src/main/res/drawable/ds_bg_bottom_sheet_top_radius.xml" value="0.1055" />
         <entry key="..\:/AndroidStudioProjects/ViaCEP/libraries/design/src/main/res/drawable/ds_bg_dark_bottom_gradient.xml" value="0.1265" />
         <entry key="..\:/AndroidStudioProjects/ViaCEP/libraries/design/src/main/res/drawable/ds_bg_dark_top_gradient.xml" value="0.1265" />
         <entry key="..\:/AndroidStudioProjects/ViaCEP/libraries/design/src/main/res/drawable/ds_bg_dialog_radius.xml" value="0.1265" />
+        <entry key="..\:/AndroidStudioProjects/ViaCEP/libraries/design/src/main/res/drawable/ds_bg_top_radius_bottom_sheet.xml" value="0.1745" />
         <entry key="..\:/AndroidStudioProjects/ViaCEP/libraries/design/src/main/res/drawable/ds_ic_cancel.xml" value="0.1265" />
         <entry key="..\:/AndroidStudioProjects/ViaCEP/libraries/design/src/main/res/drawable/ds_ic_search.xml" value="0.126" />
         <entry key="..\:/AndroidStudioProjects/ViaCEP/libraries/design/src/main/res/drawable/ds_selector_bottom_navigation_items.xml" value="0.1265" />
