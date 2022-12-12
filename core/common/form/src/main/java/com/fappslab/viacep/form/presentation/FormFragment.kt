@@ -18,24 +18,23 @@ import com.fappslab.viacep.form.databinding.FormFragmentBinding
 import com.fappslab.viacep.form.presentation.extension.clear
 import com.fappslab.viacep.form.presentation.extension.errorState
 import com.fappslab.viacep.form.presentation.extension.showErrorDialog
-import com.fappslab.viacep.form.presentation.model.AddressArgs
 import com.fappslab.viacep.form.presentation.viewmodel.FormViewAction
 import com.fappslab.viacep.form.presentation.viewmodel.FormViewModel
 import com.fappslab.viacep.form.presentation.viewmodel.FormViewState
 import com.fappslab.viacep.navigation.ZipcodeArgs
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
-import org.koin.core.parameter.parametersOf
 
 internal class FormFragment : Fragment(R.layout.form_fragment) {
 
     private val binding: FormFragmentBinding by viewBinding()
-    private val viewModel: FormViewModel by sharedViewModel { parametersOf(args, AddressArgs()) }
+    private val viewModel: FormViewModel by sharedViewModel()
     private val args: ZipcodeArgs by viewArgs()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupObservables()
         setupListeners()
+        setupDataLocal()
     }
 
     private fun setupObservables() {
@@ -48,8 +47,14 @@ internal class FormFragment : Fragment(R.layout.form_fragment) {
 
         onViewAction(viewModel) { action ->
             when (action) {
-                FormViewAction.FinishView -> activity?.finish()
-                FormViewAction.ClearForm -> clearFormAction()
+                FormViewAction.FinishView -> {
+                    activity?.finish()
+                    println("<L> finish form")
+                }
+                FormViewAction.ClearForm -> {
+                    clearFormAction()
+                    println("<L> clear form")
+                }
             }
         }
     }
@@ -64,6 +69,10 @@ internal class FormFragment : Fragment(R.layout.form_fragment) {
         inputAreaCode.addTextChangedListener { viewModel.onTextChangedAreaCode(it.toString()) }
         inputLayoutZipcode.setEndIconOnClickListener { viewModel.onGetRemoteAddress(inputZipcode.text.toString()) }
         buttonSave.setOnClickListener { viewModel.onSetLocalAddress() }
+    }
+
+    private fun setupDataLocal() {
+        viewModel.onGetLocalAddress(args.zipcode)
     }
 
     private fun FormViewState.loadingState() {

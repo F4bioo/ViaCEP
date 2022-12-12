@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/AndroidStudioProjects/ViaCEP/app/src/main/res/layout/activity_main.xml" value="0.21927083333333333" />
+        <entry key="..\:/AndroidStudioProjects/ViaCEP/core/common/form/src/main/res/layout/form_fragment.xml" value="0.10185185185185185" />
         <entry key="..\:/AndroidStudioProjects/ViaCEP/features/editor/src/main/res/layout/editor_activity.xml" value="0.16" />
         <entry key="..\:/AndroidStudioProjects/ViaCEP/features/editor/src/main/res/layout/editor_bottom_sheet.xml" value="0.16" />
         <entry key="..\:/AndroidStudioProjects/ViaCEP/features/form/src/main/res/layout/form_fragment.xml" value="0.2" />

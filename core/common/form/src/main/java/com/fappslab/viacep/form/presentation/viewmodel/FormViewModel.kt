@@ -9,21 +9,15 @@ import com.fappslab.viacep.form.domain.usecase.SetLocalAddressUseCase
 import com.fappslab.viacep.form.presentation.extension.addressFormValidation
 import com.fappslab.viacep.form.presentation.extension.toAddress
 import com.fappslab.viacep.form.presentation.extension.toAddressArgs
-import com.fappslab.viacep.navigation.ZipcodeArgs
 import kotlinx.coroutines.launch
 
 class FormViewModel(
-    args: ZipcodeArgs,
     private val getRemoteAddressUseCase: GetRemoteAddressUseCase,
     private val getLocalAddressUseCase: GetLocalAddressUseCase,
     private val setLocalAddressUseCase: SetLocalAddressUseCase
 ) : ViewModel<FormViewState, FormViewAction>(FormViewState()) {
 
     private val address get() = state.value.address
-
-    init {
-        onGetLocalAddress(args.zipcode)
-    }
 
     fun onGetRemoteAddress(zipcode: String) {
         viewModelScope.launch {
@@ -55,7 +49,7 @@ class FormViewModel(
         }
     }
 
-    private fun onGetLocalAddress(zipcode: String) {
+    fun onGetLocalAddress(zipcode: String) {
         if (zipcode.isNotEmpty()) viewModelScope.launch {
             onState {
                 it.copy(shouldShowLoading = true)

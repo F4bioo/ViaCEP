@@ -1,6 +1,6 @@
 object Modules {
 
-    // common
+    // library
     const val arch = ":libraries:arch"
     const val latteTools = ":libraries:testLibs:lattetools"
     const val design = ":libraries:design"
@@ -8,9 +8,9 @@ object Modules {
     // core
     const val local = ":core:data:local"
     const val remote = ":core:data:remote"
-    const val navigation = ":core:navigation"
+    const val form = ":core:common:form"
+    const val navigation = ":core:common:navigation"
 
     // features
     const val editor = ":features:editor"
-    const val form = ":features:form"
 }

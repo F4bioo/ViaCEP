@@ -13,7 +13,6 @@ import com.fappslab.viacep.form.presentation.viewmodel.FormViewModel
 import com.fappslab.viacep.local.client.Database
 import com.fappslab.viacep.local.database.FormDatabase
 import com.fappslab.viacep.navigation.FormNavigation
-import com.fappslab.viacep.navigation.ZipcodeArgs
 import com.fappslab.viacep.remote.client.HttpClient
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.scope.Scope
@@ -22,9 +21,8 @@ import org.koin.dsl.module
 object FormModule : KoinLoad() {
 
     override val presentation = module {
-        viewModel { (args: ZipcodeArgs) ->
+        viewModel {
             FormViewModel(
-                args = args,
                 getRemoteAddressUseCase = getRemoteAddressUseCase(),
                 getLocalAddressUseCase = getLocalAddressUseCase(),
                 setLocalAddressUseCase = setLocalAddressUseCase()

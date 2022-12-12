@@ -21,7 +21,7 @@ import org.koin.android.ext.android.inject
 import com.fappslab.viacep.design.R as DS
 import com.google.android.material.R as GM
 
-internal class EditorBottomSheet private constructor() : BottomSheetDialogFragment() {
+internal class EditorBottomSheet : BottomSheetDialogFragment() {
 
     private val binding: EditorBottomSheetBinding by viewBinding()
     private val formNavigation: FormNavigation by inject()
