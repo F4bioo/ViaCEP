@@ -18,6 +18,7 @@ include ':app',
         ':core:data:remote',
         ':core:common:form',
         ':core:common:navigation',
+        ':features:logbook',
         ':libraries:arch',
         ':libraries:design',
         ':libraries:testLibs:lattetools'
