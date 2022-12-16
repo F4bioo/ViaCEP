@@ -2,7 +2,6 @@ package com.fappslab.viacep
 
 import android.app.Application
 import com.fappslab.viacep.di.MainModule
-import com.fappslab.viacep.editor.di.EditorModule
 import com.fappslab.viacep.form.di.FormModule
 import com.fappslab.viacep.local.di.DataLocalModule
 import com.fappslab.viacep.remote.di.DataRemoteModule
@@ -22,6 +21,5 @@ object KoinAppDeclaration {
         DataLocalModule.load()
         MainModule.load()
         FormModule.load()
-        EditorModule.load()
     }
 }

@@ -1,6 +1,5 @@
 package com.fappslab.viacep.presentation
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.commit
@@ -20,10 +19,6 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
         supportFragmentManager.commit {
             replace(binding.containerFragment.id, formNavigation.newInstance())
-        }
-
-        binding.button.setOnClickListener {
-            startActivity(Intent(this, MainActivity2::class.java))
         }
     }
 }
