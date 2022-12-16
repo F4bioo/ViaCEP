@@ -47,14 +47,8 @@ internal class FormFragment : Fragment(R.layout.form_fragment) {
 
         onViewAction(viewModel) { action ->
             when (action) {
-                FormViewAction.FinishView -> {
-                    activity?.finish()
-                    println("<L> finish form")
-                }
-                FormViewAction.ClearForm -> {
-                    clearFormAction()
-                    println("<L> clear form")
-                }
+                FormViewAction.FinishView -> activity?.finish()
+                FormViewAction.ClearForm -> clearFormAction()
             }
         }
     }
@@ -84,11 +78,11 @@ internal class FormFragment : Fragment(R.layout.form_fragment) {
     }
 
     private fun FormViewState.inputErrorState() = binding.run {
-        inputStreet.errorState(streetErrorRes)
-        inputDistrict.errorState(districtErrorRes)
-        inputCity.errorState(cityErrorRes)
-        inputState.errorState(stateErrorRes)
-        inputAreaCode.errorState(areaCodeErrorRes)
+        inputLayoutStreet.errorState(streetErrorRes)
+        inputLayoutDistrict.errorState(districtErrorRes)
+        inputLayoutCity.errorState(cityErrorRes)
+        inputLayoutState.errorState(stateErrorRes)
+        inputLayoutAreaCode.errorState(areaCodeErrorRes)
     }
 
     private fun FormViewState.inputResultState() = binding.run {

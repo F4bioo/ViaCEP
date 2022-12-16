@@ -1,7 +1,6 @@
 package com.fappslab.viacep.form.presentation.viewmodel
 
 import androidx.lifecycle.viewModelScope
-import com.fappslab.viacep.arch.extension.toZipcodeFormatter
 import com.fappslab.viacep.arch.viewmodel.ViewModel
 import com.fappslab.viacep.form.domain.usecase.GetLocalAddressUseCase
 import com.fappslab.viacep.form.domain.usecase.GetRemoteAddressUseCase
@@ -16,8 +15,6 @@ class FormViewModel(
     private val getLocalAddressUseCase: GetLocalAddressUseCase,
     private val setLocalAddressUseCase: SetLocalAddressUseCase
 ) : ViewModel<FormViewState, FormViewAction>(FormViewState()) {
-
-    private val address get() = state.value.address
 
     fun onGetRemoteAddress(zipcode: String) {
         viewModelScope.launch {
@@ -34,7 +31,7 @@ class FormViewModel(
         }
     }
 
-    fun onSetLocalAddress() {
+    fun onSetLocalAddress() = state.value.run {
         if (areInputsPopulated()) viewModelScope.launch {
             onState {
                 it.copy(shouldShowLoading = true)
@@ -64,32 +61,32 @@ class FormViewModel(
         }
     }
 
-    fun onTextChangedZipcode(zipcode: String) {
-        onState { it.copy(address = address.copy(zipcode = zipcode.toZipcodeFormatter())) }
+    fun onTextChangedZipcode(zipcode: String) = onState {
+        it.copy(address = it.address.copy(zipcode = zipcode))
     }
 
     fun onTextChangedStreet(street: String) = onState {
-        it.copy(address = address.copy(street = street.trim()))
+        it.copy(address = it.address.copy(street = street))
             .run { if (street.isNotBlank()) copy(streetErrorRes = null) else this }
     }
 
     fun onTextChangedDistrict(district: String) = onState {
-        it.copy(address = address.copy(district = district.trim()))
+        it.copy(address = it.address.copy(district = district))
             .run { if (district.isNotBlank()) copy(districtErrorRes = null) else this }
     }
 
     fun onTextChangedCity(city: String) = onState {
-        it.copy(address = address.copy(city = city.trim()))
+        it.copy(address = it.address.copy(city = city))
             .run { if (city.isNotBlank()) copy(cityErrorRes = null) else this }
     }
 
     fun onTextChangedState(state: String) = onState {
-        it.copy(address = address.copy(state = state.trim()))
+        it.copy(address = it.address.copy(state = state))
             .run { if (state.isNotBlank()) copy(stateErrorRes = null) else this }
     }
 
     fun onTextChangedAreaCode(areaCode: String) = onState {
-        it.copy(address = address.copy(areaCode = areaCode.trim()))
+        it.copy(address = it.address.copy(areaCode = areaCode))
             .run { if (areaCode.isNotBlank()) copy(areaCodeErrorRes = null) else this }
     }
 

@@ -8,6 +8,7 @@ import com.fappslab.viacep.design.dsdialogsm.build
 import com.fappslab.viacep.design.dsdialogsm.dsDialogSm
 import com.fappslab.viacep.form.R
 import com.fappslab.viacep.form.presentation.viewmodel.FormViewState
+import com.google.android.material.textfield.TextInputLayout
 import com.fappslab.viacep.design.R as DS
 
 internal fun Fragment.showErrorDialog(
@@ -23,7 +24,7 @@ internal fun Fragment.showErrorDialog(
     }.build(shouldShow = shouldShowError, childFragmentManager)
 }
 
-internal fun EditText.errorState(@StringRes errorMessageRes: Int?) {
+internal fun TextInputLayout.errorState(@StringRes errorMessageRes: Int?) {
     error = errorMessageRes?.let { context.getString(it) }
 }
 
