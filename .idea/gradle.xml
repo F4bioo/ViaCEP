@@ -19,6 +19,8 @@
             <option value="$PROJECT_DIR$/core/data" />
             <option value="$PROJECT_DIR$/core/data/local" />
             <option value="$PROJECT_DIR$/core/data/remote" />
+            <option value="$PROJECT_DIR$/features" />
+            <option value="$PROJECT_DIR$/features/logbook" />
             <option value="$PROJECT_DIR$/libraries" />
             <option value="$PROJECT_DIR$/libraries/arch" />
             <option value="$PROJECT_DIR$/libraries/design" />

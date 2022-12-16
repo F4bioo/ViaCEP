@@ -12,5 +12,5 @@ object Modules {
     const val navigation = ":core:common:navigation"
 
     // features
-    const val editor = ":features:editor"
+    const val logbook = ":features:logbook"
 }
