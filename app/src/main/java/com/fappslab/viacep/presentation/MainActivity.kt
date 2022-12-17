@@ -2,23 +2,24 @@ package com.fappslab.viacep.presentation
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.commit
+import androidx.navigation.ui.setupWithNavController
 import com.fappslab.viacep.R
+import com.fappslab.viacep.arch.extension.navController
 import com.fappslab.viacep.arch.viewbinding.viewBinding
 import com.fappslab.viacep.databinding.ActivityMainBinding
-import com.fappslab.viacep.navigation.FormNavigation
-import org.koin.android.ext.android.inject
 
-class MainActivity : AppCompatActivity(R.layout.activity_main) {
+class MainActivity : AppCompatActivity() {
 
     private val binding: ActivityMainBinding by viewBinding()
-    private val formNavigation: FormNavigation by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(binding.root)
+        setupFragmentContainer()
+    }
 
-        supportFragmentManager.commit {
-            replace(binding.containerFragment.id, formNavigation.newInstance())
-        }
+    private fun setupFragmentContainer() {
+        val navController = supportFragmentManager.navController(R.id.container_fragment)
+        binding.bottomMenu.setupWithNavController(navController)
     }
 }

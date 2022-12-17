@@ -5,7 +5,9 @@ import com.fappslab.viacep.form.data.repository.FormRepositoryImpl
 import com.fappslab.viacep.form.data.service.FormService
 import com.fappslab.viacep.form.data.source.local.FormLocalDataSourceImpl
 import com.fappslab.viacep.form.data.source.remote.FormRemoteDataSourceImpl
+import com.fappslab.viacep.form.domain.usecase.DeleteLocalAddressUseCase
 import com.fappslab.viacep.form.domain.usecase.GetLocalAddressUseCase
+import com.fappslab.viacep.form.domain.usecase.GetLocalAddressesUseCase
 import com.fappslab.viacep.form.domain.usecase.GetRemoteAddressUseCase
 import com.fappslab.viacep.form.domain.usecase.SetLocalAddressUseCase
 import com.fappslab.viacep.form.navigation.FormNavigationImpl
@@ -20,9 +22,15 @@ import org.koin.dsl.module
 
 object FormModule : KoinLoad() {
 
+    override val domainModule = module {
+        factory { GetLocalAddressesUseCase(repository = getFormRepository()) }
+        factory { DeleteLocalAddressUseCase(repository = getFormRepository()) }
+    }
+
     override val presentation = module {
-        viewModel {
+        viewModel { (zipcode: String) ->
             FormViewModel(
+                zipcode = zipcode,
                 getRemoteAddressUseCase = getRemoteAddressUseCase(),
                 getLocalAddressUseCase = getLocalAddressUseCase(),
                 setLocalAddressUseCase = setLocalAddressUseCase()

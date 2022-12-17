@@ -9,6 +9,8 @@ object Libs {
     const val annotation = "androidx.annotation:annotation:${Versions.annotation_version}"
     const val fragment = "androidx.fragment:fragment:${Versions.fragment_version}"
     const val fragmentKtx = "androidx.fragment:fragment-ktx:${Versions.fragment_version}"
+    const val navigationFragment = "androidx.navigation:navigation-fragment-ktx:${Versions.navigation_version}"
+    const val navigationUi = "androidx.navigation:navigation-ui-ktx:${Versions.navigation_version}"
 
     // Kotlin
     const val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutine_version}"

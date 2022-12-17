@@ -16,4 +16,5 @@ dependencies {
     implementation project(Modules.remote)
     implementation project(Modules.local)
     implementation project(Modules.navigation)
+    implementation project(Modules.form)
 }

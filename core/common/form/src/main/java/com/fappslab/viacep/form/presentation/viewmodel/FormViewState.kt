@@ -6,6 +6,7 @@ import com.fappslab.viacep.form.presentation.model.AddressArgs
 
 data class FormViewState(
     val address: AddressArgs = AddressArgs(),
+    val shouldBlockZipcodeInput: Boolean = false,
     val shouldShowLoading: Boolean = false,
     val shouldShowError: Boolean = false,
     val errorMessage: String? = null,

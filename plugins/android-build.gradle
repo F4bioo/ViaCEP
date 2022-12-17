@@ -1,4 +1,5 @@
 apply plugin: 'kotlin-parcelize'
+apply plugin: 'androidx.navigation.safeargs.kotlin'
 
 //apply from: "$rootDir/plugins/flavor-build.gradle"
 apply from: "$rootDir/plugins/config-build.gradle"
@@ -60,4 +61,6 @@ dependencies {
     implementation(Libs.koinViewModel)
     implementation(Libs.timber)
     implementation(Libs.gson)
+    implementation(Libs.navigationFragment)
+    implementation(Libs.navigationUi)
 }
