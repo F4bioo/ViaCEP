@@ -11,10 +11,15 @@ import com.fappslab.viacep.form.presentation.extension.toAddressArgs
 import kotlinx.coroutines.launch
 
 class FormViewModel(
+    private val zipcode: String,
     private val getRemoteAddressUseCase: GetRemoteAddressUseCase,
     private val getLocalAddressUseCase: GetLocalAddressUseCase,
     private val setLocalAddressUseCase: SetLocalAddressUseCase
 ) : ViewModel<FormViewState, FormViewAction>(FormViewState()) {
+
+    init {
+        initUISate()
+    }
 
     fun onGetRemoteAddress(zipcode: String) {
         viewModelScope.launch {
@@ -46,7 +51,7 @@ class FormViewModel(
         }
     }
 
-    fun onGetLocalAddress(zipcode: String) {
+    fun onGetLocalAddress() {
         if (zipcode.isNotEmpty()) viewModelScope.launch {
             onState {
                 it.copy(shouldShowLoading = true)
@@ -94,8 +99,8 @@ class FormViewModel(
         onState { it.hideErrorState() }
     }
 
-    fun onFinishView() {
-        onAction { FormViewAction.FinishView }
+    private fun initUISate() {
+        onState { it.copy(shouldBlockZipcodeInput = zipcode.isEmpty()) }
     }
 
     private fun areInputsPopulated(): Boolean = state.value.run {

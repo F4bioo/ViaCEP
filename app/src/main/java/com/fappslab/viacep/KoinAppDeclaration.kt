@@ -4,6 +4,7 @@ import android.app.Application
 import com.fappslab.viacep.di.MainModule
 import com.fappslab.viacep.form.di.FormModule
 import com.fappslab.viacep.local.di.DataLocalModule
+import com.fappslab.viacep.logbook.di.LogbookModule
 import com.fappslab.viacep.remote.di.DataRemoteModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -21,5 +22,6 @@ object KoinAppDeclaration {
         DataLocalModule.load()
         MainModule.load()
         FormModule.load()
+        LogbookModule.load()
     }
 }

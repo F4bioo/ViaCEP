@@ -1,5 +1,6 @@
 package com.fappslab.viacep.design.dsmodal
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -22,6 +23,8 @@ class DsModal : BottomSheetDialogFragment() {
 
     var onFragment: () -> Fragment? = { null }
     var onCloseButton: () -> Unit? = { dismissAllowingStateLoss() }
+    var onDismiss: () -> Unit? = { dismissAllowingStateLoss() }
+    var shouldBlock: Boolean = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,6 +42,11 @@ class DsModal : BottomSheetDialogFragment() {
         setupCloseButton()
     }
 
+    override fun onDismiss(dialog: DialogInterface) {
+        super.onDismiss(dialog)
+        onDismiss()
+    }
+
     private fun setupHostHeight() {
         (dialog?.findViewById(GM.id.design_bottom_sheet) as? FrameLayout)?.apply {
             layoutParams.height = MATCH_PARENT
@@ -48,6 +56,11 @@ class DsModal : BottomSheetDialogFragment() {
     private fun setupBehavior() {
         (dialog as? BottomSheetDialog)?.behavior?.apply {
             state = BottomSheetBehavior.STATE_EXPANDED
+            if (shouldBlock) {
+                isHideable = true
+                isCancelable = false
+                isDraggable = false
+            }
         }
     }
 

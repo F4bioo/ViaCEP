@@ -15,7 +15,7 @@ interface FormDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun setAddress(address: AddressEntity)
 
-    @Query("SELECT * FROM address")
+    @Query("SELECT * FROM address ORDER BY city ASC")
     suspend fun getAddresses(): List<AddressEntity>
 
     @Query("DELETE FROM address WHERE _zipcode = :zipcode")

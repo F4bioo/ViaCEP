@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="form_name">Form</string>
     <string name="form_check_field_street_blank_error">Still need to type the street</string>
     <string name="form_check_field_district_blank_error">Still need to enter the district</string>
     <string name="form_check_field_city_blank_error">Still need to enter the city</string>

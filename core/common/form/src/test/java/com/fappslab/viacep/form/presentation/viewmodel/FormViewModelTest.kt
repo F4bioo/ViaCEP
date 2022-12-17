@@ -39,6 +39,7 @@ internal class FormViewModelTest {
     @Before
     fun setUp() {
         subject = FormViewModel(
+            zipcode = "01001-000",
             getRemoteAddressUseCase = getRemoteAddressUseCase,
             getLocalAddressUseCase = getLocalAddressUseCase,
             setLocalAddressUseCase = setLocalAddressUseCase
@@ -166,7 +167,7 @@ internal class FormViewModelTest {
         coEvery { getLocalAddressUseCase(any()) } returns address
 
         // When
-        subject.onGetLocalAddress(zipcode = "01001-000")
+        subject.onGetLocalAddress()
 
         // Then
         runTest {
@@ -194,7 +195,7 @@ internal class FormViewModelTest {
         )
 
         // When
-        subject.onGetLocalAddress(zipcode = "01001-000")
+        subject.onGetLocalAddress()
 
         // Then
         runTest {
@@ -207,23 +208,6 @@ internal class FormViewModelTest {
             }
         }
         coVerify { getLocalAddressUseCase(any()) }
-    }
-
-    @Test
-    fun `finishView Should expose FinishView Action When invoke onFinishView`() {
-        // Given
-        val expectedAction = FormViewAction.FinishView
-
-        // When
-        subject.onFinishView()
-
-        // Then
-        runTest {
-            subject.action.test {
-                assertEquals(expectedAction, awaitItem())
-                cancelAndConsumeRemainingEvents()
-            }
-        }
     }
 
     @Test
