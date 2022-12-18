@@ -55,7 +55,7 @@ internal class LogbookFragment : Fragment(R.layout.logbook_fragment) {
     }
 
     private fun setupList() {
-        viewModel.getLocalAddresses()
+        viewModel.onGetLocalAddresses()
     }
 
     private fun LogbookViewState.submitListState() {
@@ -72,7 +72,7 @@ internal class LogbookFragment : Fragment(R.layout.logbook_fragment) {
         textZipcode.text = getString(R.string.logbook_zipcode, address.zipcode).parseAsHtml()
         textStreet.text = getString(R.string.logbook_street, address.street).parseAsHtml()
         textCity.text = getString(R.string.logbook_city, address.city, address.state).parseAsHtml()
-        buttonDelete.setOnClickListener { viewModel.deleteLocalAddress(address.zipcode) }
+        buttonDelete.setOnClickListener { viewModel.onDeleteLocalAddress(address.zipcode) }
         cardAddress.setOnClickListener { viewModel.onCardItem(address.zipcode) }
     }
 

@@ -160,7 +160,6 @@ internal class FormViewModelTest {
     fun `getLocalAddressSuccess Should expose state When onGetLocalAddress return success result`() {
         // Given
         val address = addressResponse.toAddress()
-        coEvery { getLocalAddressUseCase(any()) } returns address
         val expectedFirstState = initialState.copy(shouldShowLoading = true)
         val expectedSecondState = expectedFirstState.copy(shouldShowLoading = false)
         val expectedFinalState = expectedSecondState.copy(address = address.toAddressArgs())
