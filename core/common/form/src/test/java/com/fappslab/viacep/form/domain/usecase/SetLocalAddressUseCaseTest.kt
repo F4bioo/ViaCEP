@@ -6,6 +6,7 @@ import com.fappslab.viacep.form.data.moddel.extension.toAddress
 import com.fappslab.viacep.form.domain.repository.FormRepository
 import com.fappslab.viacep.local.exception.CacheThrowable
 import com.fappslab.viacep.remote.stubmockprovider.StubResponse
+import com.fappslab.viacep.remote.stubmockprovider.StubResponse.addressResponse
 import io.mockk.clearAllMocks
 import io.mockk.coEvery
 import io.mockk.coVerify
@@ -47,7 +48,7 @@ internal class SetLocalAddressUseCaseTest {
     fun `setLocalAddressSuccess Should return success result When invoke setAddress`() {
         runTest {
             // Given
-            val address = StubResponse.addressResponse.toAddress()
+            val address = addressResponse.toAddress()
             val expectedResult = Unit
             coEvery { formRepository.setLocalAddress(any()) } returns Unit
 
@@ -65,7 +66,7 @@ internal class SetLocalAddressUseCaseTest {
         runTest {
             // Given
             val throwable = CacheThrowable("Error message")
-            val address = StubResponse.addressResponse.toAddress()
+            val address = addressResponse.toAddress()
             coEvery {
                 formRepository.setLocalAddress(any())
             } throws throwable

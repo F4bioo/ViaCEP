@@ -11,7 +11,7 @@ internal class LogbookViewModel(
     private val deleteLocalAddressUseCase: DeleteLocalAddressUseCase,
 ) : ViewModel<LogbookViewState, LogbookViewAction>(LogbookViewState()) {
 
-    fun getLocalAddresses() {
+    fun onGetLocalAddresses() {
         viewModelScope.launch {
             onState {
                 it.copy(shouldShowLoading = true)
@@ -26,7 +26,7 @@ internal class LogbookViewModel(
         }
     }
 
-    fun deleteLocalAddress(zipcode: String) {
+    fun onDeleteLocalAddress(zipcode: String) {
         viewModelScope.launch {
             onState {
                 it.copy(shouldShowLoading = true)
@@ -36,7 +36,7 @@ internal class LogbookViewModel(
                 onState { it.copy(shouldShowLoading = false) }
             }.fold(
                 onFailure = {},
-                onSuccess = { getLocalAddresses() }
+                onSuccess = { onGetLocalAddresses() }
             )
         }
     }
@@ -47,6 +47,6 @@ internal class LogbookViewModel(
 
     fun onCloseEditorBottomSheet() {
         onState { it.copy(shouldShowEditorBottomSheet = false) }
-        getLocalAddresses()
+        onGetLocalAddresses()
     }
 }

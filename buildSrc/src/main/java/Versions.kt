@@ -53,7 +53,7 @@ object Versions {
     const val mockitoKotlin_version = "3.2.0"
     const val mockk_version = "1.11.0"
     const val mockWebserver_version = "4.9.0"
-    const val okhttpTest_version = "4.9.1"
+    const val okhttpTest_version = "4.9.0"
     const val turbine_version = "0.8.0"
     const val coreTest_version = "2.1.0"
     const val hamcrest_version = "1.3"
