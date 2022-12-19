@@ -100,7 +100,7 @@ class FormViewModel(
     }
 
     private fun initUISate() {
-        onState { it.copy(shouldBlockZipcodeInput = zipcode.isEmpty()) }
+        onState { it.copy(shouldEnableZipcodeInput = zipcode.isEmpty()) }
     }
 
     private fun areInputsPopulated(): Boolean = state.value.run {

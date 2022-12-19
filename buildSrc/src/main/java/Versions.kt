@@ -60,7 +60,7 @@ object Versions {
     const val assertJ_version = "3.20.2"
     const val testRules_version = "1.3.0"
     const val coreKtxText_version = "1.4.0"
-    const val fragmentTest_version = "1.3.0-beta01"
+    const val fragmentTest_version = "1.5.5"
     const val truth_version  = "1.0.1"
     const val orchestrator_version  = "1.0.2"
     const val reflections_version = "0.9.12"

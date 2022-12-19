@@ -80,8 +80,8 @@ internal class FormFragment(
 
     private fun FormViewState.inputZipcodeState() {
         binding.inputZipcode.apply {
-            isEnabled = shouldBlockZipcodeInput
-            isFocusable = shouldBlockZipcodeInput
+            isEnabled = shouldEnableZipcodeInput
+            isFocusable = shouldEnableZipcodeInput
         }
     }
 
