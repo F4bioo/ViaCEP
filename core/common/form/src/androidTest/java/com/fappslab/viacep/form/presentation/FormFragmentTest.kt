@@ -2,7 +2,12 @@ package com.fappslab.viacep.form.presentation
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.fappslab.viacep.form.R
+import com.fappslab.viacep.form.data.moddel.extension.toAddress
+import com.fappslab.viacep.form.presentation.extension.toAddressArgs
+import com.fappslab.viacep.form.presentation.viewmodel.FormViewAction
 import com.fappslab.viacep.form.presentation.viewmodel.FormViewState
+import com.fappslab.viacep.lattetools.robot.checks.checkInputTextIsEmpty
+import com.fappslab.viacep.remote.stubmockprovider.StubResponse.addressResponse
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.Rule
 import org.junit.Test
@@ -15,10 +20,19 @@ internal class FormFragmentTest {
     @get:Rule
     val formFragmentRobot = FormFragmentRobot()
 
+    private val address = addressResponse.toAddress()
     private val initialState = FormViewState()
+    private val inputFieldIds = listOf(
+        R.id.input_zipcode,
+        R.id.input_street,
+        R.id.input_district,
+        R.id.input_city,
+        R.id.input_state,
+        R.id.input_area_code
+    )
 
     @Test
-    fun checkIsDisplayed_get_loading_showing_When_invoke_shouldShowLoading_as_true() {
+    fun checkLoadingIsDisplayed_Should_display_loading_When_shouldShowLoading_state_is_true() {
         val expectedState = initialState.copy(shouldShowLoading = true)
 
         formFragmentRobot
@@ -28,7 +42,7 @@ internal class FormFragmentTest {
     }
 
     @Test
-    fun checkIsNotDisplayed_Should_get_loading_hidden_When_invoke_shouldShowLoading_as_false() {
+    fun checkLoadingIsNotDisplayed_Should_hide_loading_When_shouldShowLoading_state_is_false() {
         val expectedState = initialState.copy(shouldShowLoading = false)
 
         formFragmentRobot
@@ -38,8 +52,11 @@ internal class FormFragmentTest {
     }
 
     @Test
-    fun checkIsEnabled_Should_get_input_enabled_When_invoke_shouldEnableZipcodeInput_as_true() {
-        val expectedState = initialState.copy(shouldEnableZipcodeInput = true)
+    fun checkZipcodeInputIsEnabled_Should_enable_input_When_shouldEnableZipcodeInput_is_true() {
+        val expectedState = initialState.copy(
+            address = address.toAddressArgs(),
+            shouldEnableZipcodeInput = true
+        )
 
         formFragmentRobot
             .givenState { expectedState }
@@ -48,8 +65,11 @@ internal class FormFragmentTest {
     }
 
     @Test
-    fun checkIsNotEnabled_Should_get_input_disabled_When_invoke_shouldEnableZipcodeInput_as_false() {
-        val expectedState = initialState.copy(shouldEnableZipcodeInput = false)
+    fun checkZipcodeInputIsNotEnabled_Should_disable_input_When_shouldEnableZipcodeInput_is_false() {
+        val expectedState = initialState.copy(
+            address = address.toAddressArgs(),
+            shouldEnableZipcodeInput = false
+        )
 
         formFragmentRobot
             .givenState { expectedState }
@@ -58,23 +78,42 @@ internal class FormFragmentTest {
     }
 
     @Test
-    fun checkInputTextHint_Should_get_all_inputs_populated_with_hint_When_show_screen() {
+    fun checkInputTextHint_Should_display_hints_in_all_inputs_When_show_screen() {
+        val expectedHints = mapOf(
+            R.id.input_zipcode to "Zip code",
+            R.id.input_street to "Street",
+            R.id.input_district to "District",
+            R.id.input_city to "City",
+            R.id.input_state to "State",
+            R.id.input_area_code to "Area code"
+        )
+
         formFragmentRobot
             .whenExecute()
             .thenCheck {
-                checkInputTextHasExactlyTextHint(R.id.input_zipcode, expectedHint = "Zip code")
-                checkInputTextHasExactlyTextHint(R.id.input_street, expectedHint = "Street")
-                checkInputTextHasExactlyTextHint(R.id.input_district, expectedHint = "District")
-                checkInputTextHasExactlyTextHint(R.id.input_city, expectedHint = "City")
-                checkInputTextHasExactlyTextHint(R.id.input_state, expectedHint = "State")
-                checkInputTextHasExactlyTextHint(R.id.input_area_code, expectedHint = "Area code")
+                inputFieldIds.forEach {
+                    checkInputTextHasExactlyTextHint(it, expectedHints.getValue(it))
+                }
             }
     }
 
     @Test
-    fun checkButtonSaveClicked_Should_get_button_save_click_When_invoke_button_save() {
+    fun checkButtonSaveClicked_Should_clear_form_and_check_inputs_are_empty_When_invoke_button_save() {
+        val expectedState = initialState.copy(address = address.toAddressArgs())
+
         formFragmentRobot
+            .givenState { expectedState }
+            .givenAction(
+                invoke = { onSetLocalAddress() },
+                action = { FormViewAction.ClearForm }
+            )
             .whenExecute()
-            .thenCheck { checkButtonSaveClicked() }
+            .thenCheck {
+                checkButtonSaveClicked()
+            }.thenCheck {
+                inputFieldIds.forEach { resId ->
+                    checkInputTextIsEmpty(resId)
+                }
+            }
     }
 }
