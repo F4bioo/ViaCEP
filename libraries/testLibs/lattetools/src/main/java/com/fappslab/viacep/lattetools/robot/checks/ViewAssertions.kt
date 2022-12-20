@@ -43,6 +43,11 @@ fun checkInputTextHasText(@IdRes resId: Int, expectedText: String) {
         .check(ViewAssertions.matches(ViewMatchers.withText(expectedText)))
 }
 
+fun checkInputTextIsEmpty(@IdRes resId: Int) {
+    Espresso.onView(ViewMatchers.withId(resId))
+        .check(ViewAssertions.matches(ViewMatchers.withText("")))
+}
+
 fun checkInputTextHasHint(@IdRes resId: Int, expectedText: String) {
     Espresso.onView(ViewMatchers.withId(resId))
         .check(ViewAssertions.matches(ViewMatchers.withHint(expectedText)))

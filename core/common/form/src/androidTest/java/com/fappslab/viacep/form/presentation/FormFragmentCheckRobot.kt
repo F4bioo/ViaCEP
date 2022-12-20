@@ -5,6 +5,7 @@ import com.fappslab.viacep.form.R
 import com.fappslab.viacep.lattetools.robot.CheckRobot
 import com.fappslab.viacep.lattetools.robot.checks.checkButtonClicked
 import com.fappslab.viacep.lattetools.robot.checks.checkInputTextHasHint
+import com.fappslab.viacep.lattetools.robot.checks.checkInputTextIsEmpty
 import com.fappslab.viacep.lattetools.robot.checks.checkIsDisplayed
 import com.fappslab.viacep.lattetools.robot.checks.checkIsEnabled
 import com.fappslab.viacep.lattetools.robot.checks.checkIsNotDisplayed
