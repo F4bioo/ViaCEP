@@ -1,7 +1,12 @@
 package com.fappslab.viacep.form.presentation.viewmodel
 
 import androidx.lifecycle.viewModelScope
-import com.fappslab.viacep.arch.resultbuilder.runResultBuilder
+import com.fappslab.viacep.arch.resultbuilder.launchIn
+import com.fappslab.viacep.arch.resultbuilder.onFailure
+import com.fappslab.viacep.arch.resultbuilder.onCompletion
+import com.fappslab.viacep.arch.resultbuilder.onSuccess
+import com.fappslab.viacep.arch.resultbuilder.onStart
+import com.fappslab.viacep.arch.resultbuilder.runAsyncSafely
 import com.fappslab.viacep.arch.viewmodel.ViewModel
 import com.fappslab.viacep.form.domain.usecase.GetLocalAddressUseCase
 import com.fappslab.viacep.form.domain.usecase.GetRemoteAddressUseCase
@@ -22,45 +27,45 @@ class FormViewModel(
     }
 
     fun onGetRemoteAddress(zipcode: String) {
-        runResultBuilder {
+        runAsyncSafely {
             getRemoteAddressUseCase(zipcode)
-        }.start {
+        }.onStart {
             onState { it.copy(shouldShowLoading = true) }
-        }.complete {
+        }.onCompletion {
             onState { it.copy(shouldShowLoading = false) }
-        }.catch { cause ->
+        }.onFailure { cause ->
             onState { it.showErrorState(cause.message) }
-        }.result { address ->
+        }.onSuccess { address ->
             onState { it.copy(address = address.toAddressArgs()) }
-        }.buildIn(viewModelScope)
+        }.launchIn(viewModelScope)
     }
 
     fun onSetLocalAddress() = state.value.run {
-        if (areInputsPopulated()) runResultBuilder {
+        if (areInputsPopulated()) runAsyncSafely {
             setLocalAddressUseCase(address.toAddress())
-        }.start {
+        }.onStart {
             onState { it.copy(shouldShowLoading = true) }
-        }.complete {
+        }.onCompletion {
             onState { it.copy(shouldShowLoading = false) }
-        }.catch { cause ->
+        }.onFailure { cause ->
             onState { it.showErrorState(cause.message) }
-        }.result {
+        }.onSuccess {
             onAction { FormViewAction.ClearForm }
-        }.buildIn(viewModelScope)
+        }.launchIn(viewModelScope)
     }
 
     fun onGetLocalAddress() {
-        if (zipcode.isNotEmpty()) runResultBuilder {
+        if (zipcode.isNotEmpty()) runAsyncSafely {
             getLocalAddressUseCase(zipcode)
-        }.start {
+        }.onStart {
             onState { it.copy(shouldShowLoading = true) }
-        }.complete {
+        }.onCompletion {
             onState { it.copy(shouldShowLoading = false) }
-        }.catch { cause ->
+        }.onFailure { cause ->
             onState { it.showErrorState(cause.message) }
-        }.result { address ->
+        }.onSuccess { address ->
             onState { it.copy(address = address.toAddressArgs()) }
-        }.buildIn(viewModelScope)
+        }.launchIn(viewModelScope)
     }
 
     fun onTextChangedZipcode(zipcode: String) = onState {
