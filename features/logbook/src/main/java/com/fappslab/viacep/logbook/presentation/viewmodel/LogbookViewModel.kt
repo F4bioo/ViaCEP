@@ -1,7 +1,11 @@
 package com.fappslab.viacep.logbook.presentation.viewmodel
 
 import androidx.lifecycle.viewModelScope
-import com.fappslab.viacep.arch.resultbuilder.runResultBuilder
+import com.fappslab.viacep.arch.resultbuilder.launchIn
+import com.fappslab.viacep.arch.resultbuilder.onCompletion
+import com.fappslab.viacep.arch.resultbuilder.onSuccess
+import com.fappslab.viacep.arch.resultbuilder.onStart
+import com.fappslab.viacep.arch.resultbuilder.runAsyncSafely
 import com.fappslab.viacep.arch.viewmodel.ViewModel
 import com.fappslab.viacep.form.domain.usecase.DeleteLocalAddressUseCase
 import com.fappslab.viacep.form.domain.usecase.GetLocalAddressesUseCase
@@ -12,27 +16,27 @@ internal class LogbookViewModel(
 ) : ViewModel<LogbookViewState, LogbookViewAction>(LogbookViewState()) {
 
     fun onGetLocalAddresses() {
-        runResultBuilder {
+        runAsyncSafely {
             getLocalAddressesUseCase()
-        }.start {
+        }.onStart {
             onState { it.copy(shouldShowLoading = true) }
-        }.complete {
+        }.onCompletion {
             onState { it.copy(shouldShowLoading = false) }
-        }.result { addresses ->
+        }.onSuccess { addresses ->
             onState { it.copy(addresses = addresses) }
-        }.buildIn(viewModelScope)
+        }.launchIn(viewModelScope)
     }
 
     fun onDeleteLocalAddress(zipcode: String) {
-        runResultBuilder {
+        runAsyncSafely {
             deleteLocalAddressUseCase(zipcode)
-        }.start {
+        }.onStart {
             onState { it.copy(shouldShowLoading = true) }
-        }.complete {
+        }.onCompletion {
             onState { it.copy(shouldShowLoading = false) }
-        }.result {
+        }.onSuccess {
             onGetLocalAddresses()
-        }.buildIn(viewModelScope)
+        }.launchIn(viewModelScope)
     }
 
     fun onCardItem(zipcode: String) {

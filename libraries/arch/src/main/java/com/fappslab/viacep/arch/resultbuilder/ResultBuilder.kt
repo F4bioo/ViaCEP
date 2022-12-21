@@ -4,60 +4,49 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 class ResultBuilder<T>(private val functionBlock: suspend () -> T) {
-    private var startAction: (() -> Unit)? = null
-    private var completeAction: (() -> Unit)? = null
-    private var catchAction: ((Throwable) -> Unit)? = null
-    private var collectResultAction: ((T) -> Unit)? = null
-
-    fun start(startBlock: () -> Unit): ResultBuilder<T> {
-        startAction = startBlock
-        return this
-    }
-
-    fun complete(completeBlock: () -> Unit): ResultBuilder<T> {
-        completeAction = completeBlock
-        return this
-    }
-
-    fun catch(catchBlock: (Throwable) -> Unit): ResultBuilder<T> {
-        catchAction = catchBlock
-        return this
-    }
-
-    fun result(resultBlock: (T) -> Unit): ResultBuilder<T> {
-        collectResultAction = resultBlock
-        return this
-    }
+    var onStart: (() -> Unit)? = null
+    var onCompletion: (() -> Unit)? = null
+    var onFailure: ((Throwable) -> Unit)? = null
+    var onSuccess: ((T) -> Unit)? = null
 
     suspend fun build() {
         apply {
-            startAction?.invoke()
+            onStart?.invoke()
         }.runCatching {
             functionBlock.invoke()
         }.apply {
-            completeAction?.invoke()
+            onCompletion?.invoke()
         }.fold(
-            onFailure = { catchAction?.invoke(it) },
-            onSuccess = { collectResultAction?.invoke(it) }
+            onFailure = { onFailure?.invoke(it) },
+            onSuccess = { onSuccess?.invoke(it) }
         )
-    }
-
-    fun buildIn(scope: CoroutineScope) {
-        scope.launch {
-            apply {
-                startAction?.invoke()
-            }.runCatching {
-                functionBlock.invoke()
-            }.apply {
-                completeAction?.invoke()
-            }.fold(
-                onFailure = { catchAction?.invoke(it) },
-                onSuccess = { collectResultAction?.invoke(it) }
-            )
-        }
     }
 }
 
-fun <T> runResultBuilder(functionBlock: suspend () -> T): ResultBuilder<T> {
-    return ResultBuilder(functionBlock)
+fun <T> runAsyncSafely(invokeFunction: suspend () -> T): ResultBuilder<T> {
+    return ResultBuilder(invokeFunction)
+}
+
+fun <T> ResultBuilder<T>.onStart(action: () -> Unit): ResultBuilder<T> {
+    onStart = action
+    return this
+}
+
+fun <T> ResultBuilder<T>.onCompletion(action: () -> Unit): ResultBuilder<T> {
+    onCompletion = action
+    return this
+}
+
+fun <T> ResultBuilder<T>.onFailure(action: (Throwable) -> Unit): ResultBuilder<T> {
+    onFailure = action
+    return this
+}
+
+fun <T> ResultBuilder<T>.onSuccess(action: (T) -> Unit): ResultBuilder<T> {
+    onSuccess = action
+    return this
+}
+
+fun <T> ResultBuilder<T>.launchIn(scope: CoroutineScope) {
+    scope.launch { build() }
 }
