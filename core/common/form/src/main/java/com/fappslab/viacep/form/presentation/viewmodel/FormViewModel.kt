@@ -1,6 +1,7 @@
 package com.fappslab.viacep.form.presentation.viewmodel
 
 import androidx.lifecycle.viewModelScope
+import com.fappslab.viacep.arch.resultbuilder.runResultBuilder
 import com.fappslab.viacep.arch.viewmodel.ViewModel
 import com.fappslab.viacep.form.domain.usecase.GetLocalAddressUseCase
 import com.fappslab.viacep.form.domain.usecase.GetRemoteAddressUseCase
@@ -8,13 +9,12 @@ import com.fappslab.viacep.form.domain.usecase.SetLocalAddressUseCase
 import com.fappslab.viacep.form.presentation.extension.addressFormValidation
 import com.fappslab.viacep.form.presentation.extension.toAddress
 import com.fappslab.viacep.form.presentation.extension.toAddressArgs
-import kotlinx.coroutines.launch
 
 class FormViewModel(
     private val zipcode: String,
     private val getRemoteAddressUseCase: GetRemoteAddressUseCase,
     private val getLocalAddressUseCase: GetLocalAddressUseCase,
-    private val setLocalAddressUseCase: SetLocalAddressUseCase
+    private val setLocalAddressUseCase: SetLocalAddressUseCase,
 ) : ViewModel<FormViewState, FormViewAction>(FormViewState()) {
 
     init {
@@ -22,48 +22,45 @@ class FormViewModel(
     }
 
     fun onGetRemoteAddress(zipcode: String) {
-        viewModelScope.launch {
-            onState {
-                it.copy(shouldShowLoading = true)
-            }.runCatching {
-                getRemoteAddressUseCase(zipcode)
-            }.apply {
-                onState { it.copy(shouldShowLoading = false) }
-            }.fold(
-                onFailure = { cause -> onState { it.showErrorState(cause.message) } },
-                onSuccess = { address -> onState { it.copy(address = address.toAddressArgs()) } }
-            )
-        }
+        runResultBuilder {
+            getRemoteAddressUseCase(zipcode)
+        }.start {
+            onState { it.copy(shouldShowLoading = true) }
+        }.complete {
+            onState { it.copy(shouldShowLoading = false) }
+        }.catch { cause ->
+            onState { it.showErrorState(cause.message) }
+        }.result { address ->
+            onState { it.copy(address = address.toAddressArgs()) }
+        }.buildIn(viewModelScope)
     }
 
     fun onSetLocalAddress() = state.value.run {
-        if (areInputsPopulated()) viewModelScope.launch {
-            onState {
-                it.copy(shouldShowLoading = true)
-            }.runCatching {
-                setLocalAddressUseCase(address.toAddress())
-            }.apply {
-                onState { it.copy(shouldShowLoading = false) }
-            }.fold(
-                onFailure = { cause -> onState { it.showErrorState(cause.message) } },
-                onSuccess = { onAction { FormViewAction.ClearForm } }
-            )
-        }
+        if (areInputsPopulated()) runResultBuilder {
+            setLocalAddressUseCase(address.toAddress())
+        }.start {
+            onState { it.copy(shouldShowLoading = true) }
+        }.complete {
+            onState { it.copy(shouldShowLoading = false) }
+        }.catch { cause ->
+            onState { it.showErrorState(cause.message) }
+        }.result {
+            onAction { FormViewAction.ClearForm }
+        }.buildIn(viewModelScope)
     }
 
     fun onGetLocalAddress() {
-        if (zipcode.isNotEmpty()) viewModelScope.launch {
-            onState {
-                it.copy(shouldShowLoading = true)
-            }.runCatching {
-                getLocalAddressUseCase(zipcode)
-            }.apply {
-                onState { it.copy(shouldShowLoading = false) }
-            }.fold(
-                onFailure = { cause -> onState { it.showErrorState(cause.message) } },
-                onSuccess = { address -> onState { it.copy(address = address.toAddressArgs()) } }
-            )
-        }
+        if (zipcode.isNotEmpty()) runResultBuilder {
+            getLocalAddressUseCase(zipcode)
+        }.start {
+            onState { it.copy(shouldShowLoading = true) }
+        }.complete {
+            onState { it.copy(shouldShowLoading = false) }
+        }.catch { cause ->
+            onState { it.showErrorState(cause.message) }
+        }.result { address ->
+            onState { it.copy(address = address.toAddressArgs()) }
+        }.buildIn(viewModelScope)
     }
 
     fun onTextChangedZipcode(zipcode: String) = onState {
