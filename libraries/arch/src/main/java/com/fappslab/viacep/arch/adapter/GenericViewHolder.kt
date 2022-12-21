@@ -10,3 +10,4 @@ class GenericViewHolder<VB : ViewBinding, T> internal constructor(
 
     fun bind(item: T) = bind(binding, item)
 }
+

@@ -80,3 +80,4 @@ internal class LogbookFragment : Fragment(R.layout.logbook_fragment) {
             LogbookAddressItemBinding.inflate(inflater, parent, false)
         }
 }
+

@@ -18,3 +18,4 @@ class GenericAdapter<VB : ViewBinding, T : Any>(
         getItem(position)?.also(holder::bind)
     }
 }
+
