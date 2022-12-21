@@ -2,7 +2,7 @@ object Versions {
 
     const val gradle_version = "7.2.2"
     const val kotlin_version = "1.7.10"
-    const val jacoco_version = "0.8.7"
+    const val jacoco_version = "0.8.6"
     const val googleServices_version = "4.3.10"
     const val coreKtx_version = "1.8.0"
     const val appcompat_version = "1.4.2"

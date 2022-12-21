@@ -22,14 +22,6 @@ internal class FormFragmentTest {
 
     private val address = addressResponse.toAddress()
     private val initialState = FormViewState()
-    private val inputFieldIds = listOf(
-        R.id.input_zipcode,
-        R.id.input_street,
-        R.id.input_district,
-        R.id.input_city,
-        R.id.input_state,
-        R.id.input_area_code
-    )
 
     @Test
     fun checkLoadingIsDisplayed_Should_display_loading_When_shouldShowLoading_state_is_true() {
@@ -91,8 +83,8 @@ internal class FormFragmentTest {
         formFragmentRobot
             .whenExecute()
             .thenCheck {
-                inputFieldIds.forEach {
-                    checkInputTextHasExactlyTextHint(it, expectedHints.getValue(it))
+                expectedHints.forEach {
+                    checkInputTextHasExactlyTextHint(it.key, expectedHints.getValue(it.key))
                 }
             }
     }
@@ -100,6 +92,14 @@ internal class FormFragmentTest {
     @Test
     fun checkButtonSaveClicked_Should_clear_form_and_check_inputs_are_empty_When_invoke_button_save() {
         val expectedState = initialState.copy(address = address.toAddressArgs())
+        val inputFieldIds = listOf(
+            R.id.input_zipcode,
+            R.id.input_street,
+            R.id.input_district,
+            R.id.input_city,
+            R.id.input_state,
+            R.id.input_area_code
+        )
 
         formFragmentRobot
             .givenState { expectedState }
