@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.text.parseAsHtml
 import androidx.fragment.app.Fragment
-import androidx.viewbinding.ViewBinding
 import com.fappslab.viacep.arch.adapter.GenericAdapter
 import com.fappslab.viacep.arch.viewbinding.viewBinding
 import com.fappslab.viacep.arch.viewmodel.onViewState
@@ -27,8 +26,8 @@ internal class LogbookFragment : Fragment(R.layout.logbook_fragment) {
     private val viewModel: LogbookViewModel by sharedViewModel()
     private val formNavigation: FormNavigation by inject()
     private val logbookAdapter by lazy {
-        GenericAdapter<Address>(::inflate) { viewBinding, item ->
-            (viewBinding as LogbookAddressItemBinding).run { bind(item) }
+        GenericAdapter<LogbookAddressItemBinding, Address>(::inflate) { binding, item ->
+            binding.bind(item)
         }
     }
 
@@ -76,6 +75,8 @@ internal class LogbookFragment : Fragment(R.layout.logbook_fragment) {
         cardAddress.setOnClickListener { viewModel.onCardItem(address.zipcode) }
     }
 
-    private fun inflate(parent: ViewGroup): ViewBinding = LayoutInflater.from(parent.context)
-        .let { LogbookAddressItemBinding.inflate(it, parent, false) }
+    private fun inflate(parent: ViewGroup): LogbookAddressItemBinding =
+        LayoutInflater.from(parent.context).let { inflater ->
+            LogbookAddressItemBinding.inflate(inflater, parent, false)
+        }
 }
