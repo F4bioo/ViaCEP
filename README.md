@@ -2,5 +2,5 @@
 
 ## Module dependencies
 <kbd>
-<img src="images/graphviz_modules.png" width="1005"/>
+<img src="images/graphviz.svg" width="700" height="700"/>
 </kbd>
