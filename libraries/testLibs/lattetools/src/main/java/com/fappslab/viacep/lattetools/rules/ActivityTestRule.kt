@@ -44,7 +44,6 @@ abstract class ActivityTestRule<A : Activity>(
     }
 
     private fun finished() {
-        Thread.sleep(1000)
         destroyActivity()
     }
 }

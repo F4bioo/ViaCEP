@@ -54,7 +54,6 @@ abstract class FragmentTestRule<F : Fragment>(
     }
 
     private fun finished() {
-        Thread.sleep(1000)
         destroyFragment()
     }
 }
