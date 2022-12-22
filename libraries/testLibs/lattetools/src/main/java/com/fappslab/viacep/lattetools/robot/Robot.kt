@@ -6,8 +6,7 @@ import com.fappslab.viacep.arch.viewmodel.ViewState
 
 interface Robot<C : CheckRobot<C>, S : ViewState, A : ViewAction, V : ViewModel<S, A>> {
     fun givenState(state: () -> S): Robot<C, S, A, V> = this
-
     fun givenAction( invoke: V.() -> Unit, action: () -> A ): Robot<C, S, A, V> = this
-
-    fun whenExecute(): C
+    fun whenLaunch(): C
 }
+
