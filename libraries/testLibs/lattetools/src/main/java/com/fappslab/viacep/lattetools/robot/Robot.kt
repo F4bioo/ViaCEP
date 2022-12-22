@@ -1,12 +1,11 @@
 package com.fappslab.viacep.lattetools.robot
 
-import com.fappslab.viacep.arch.viewmodel.ViewAction
+import com.fappslab.viacep.arch.viewmodel.Action
+import com.fappslab.viacep.arch.viewmodel.State
 import com.fappslab.viacep.arch.viewmodel.ViewModel
-import com.fappslab.viacep.arch.viewmodel.ViewState
 
-interface Robot<C : CheckRobot<C>, S : ViewState, A : ViewAction, V : ViewModel<S, A>> {
-    fun givenState(state: () -> S): Robot<C, S, A, V> = this
-    fun givenAction( invoke: V.() -> Unit, action: () -> A ): Robot<C, S, A, V> = this
-    fun whenLaunch(): C
+interface Robot<CB : CheckRobot<CB>, S : State, A : Action, VM : ViewModel<S, A>> {
+    fun givenState(state: () -> S): Robot<CB, S, A, VM> = this
+    fun givenAction(invoke: VM.() -> Unit, action: () -> A): Robot<CB, S, A, VM> = this
+    fun whenLaunch(): CB
 }
-

@@ -1,6 +1,6 @@
 package com.fappslab.viacep.logbook.presentation.viewmodel
 
-import com.fappslab.viacep.arch.viewmodel.ViewState
+import com.fappslab.viacep.arch.viewmodel.State
 import com.fappslab.viacep.form.domain.model.Address
 
 internal data class LogbookViewState(
@@ -8,4 +8,4 @@ internal data class LogbookViewState(
     val shouldShowEditorBottomSheet: Boolean = false,
     val addresses: List<Address> = listOf(),
     val zipcode: String = "",
-) : ViewState
+) : State
