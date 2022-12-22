@@ -8,6 +8,5 @@ class GenericViewHolder<VB : ViewBinding, T> internal constructor(
     private val bind: Bind<VB, T>,
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(item: T) = bind(binding, item)
+    fun bind(item: T, position: Int) = bind(binding, item, position)
 }
-

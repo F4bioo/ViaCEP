@@ -26,7 +26,7 @@ internal class LogbookFragment : Fragment(R.layout.logbook_fragment) {
     private val viewModel: LogbookViewModel by sharedViewModel()
     private val formNavigation: FormNavigation by inject()
     private val logbookAdapter by lazy {
-        GenericAdapter<LogbookAddressItemBinding, Address>(::inflate) { binding, item ->
+        GenericAdapter<LogbookAddressItemBinding, Address>(::inflate) { binding, item, _ ->
             binding.bind(item)
         }
     }
@@ -80,4 +80,3 @@ internal class LogbookFragment : Fragment(R.layout.logbook_fragment) {
             LogbookAddressItemBinding.inflate(inflater, parent, false)
         }
 }
-
