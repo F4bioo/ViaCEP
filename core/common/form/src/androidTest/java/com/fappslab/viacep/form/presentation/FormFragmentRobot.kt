@@ -24,7 +24,7 @@ private typealias RobotAlias =
 
 @ExperimentalCoroutinesApi
 internal class FormFragmentRobot(
-    bundle: Bundle? = null
+    bundle: Bundle? = null,
 ) : FragmentTestRule<FormFragment>(
     fragmentKClass = FormFragment::class,
     themeResId = R.style.Theme_Ds,
@@ -46,7 +46,7 @@ internal class FormFragmentRobot(
     }
 
     override fun givenState(
-        state: () -> FormViewState
+        state: () -> FormViewState,
     ): RobotAlias {
         fakeState.update { state() }
         return this
@@ -54,7 +54,7 @@ internal class FormFragmentRobot(
 
     override fun givenAction(
         invoke: FormViewModel.() -> Unit,
-        action: () -> FormViewAction
+        action: () -> FormViewAction,
     ): RobotAlias {
         every {
             invoke(fakeViewModel)
@@ -64,7 +64,7 @@ internal class FormFragmentRobot(
         return this
     }
 
-    override fun whenExecute(): FormFragmentCheckRobot {
+    override fun whenLaunch(): FormFragmentCheckRobot {
         launchFragment()
         return FormFragmentCheckRobot()
     }

@@ -29,7 +29,7 @@ internal class FormFragmentTest {
 
         formFragmentRobot
             .givenState { expectedState }
-            .whenExecute()
+            .whenLaunch()
             .thenCheck { checkLoadingIsDisplayed() }
     }
 
@@ -39,7 +39,7 @@ internal class FormFragmentTest {
 
         formFragmentRobot
             .givenState { expectedState }
-            .whenExecute()
+            .whenLaunch()
             .thenCheck { checkLoadingIsNotDisplayed() }
     }
 
@@ -52,7 +52,7 @@ internal class FormFragmentTest {
 
         formFragmentRobot
             .givenState { expectedState }
-            .whenExecute()
+            .whenLaunch()
             .thenCheck { checkZipcodeInputIsEnabled() }
     }
 
@@ -65,7 +65,7 @@ internal class FormFragmentTest {
 
         formFragmentRobot
             .givenState { expectedState }
-            .whenExecute()
+            .whenLaunch()
             .thenCheck { checkZipcodeInputIsNotEnabled() }
     }
 
@@ -81,7 +81,7 @@ internal class FormFragmentTest {
         )
 
         formFragmentRobot
-            .whenExecute()
+            .whenLaunch()
             .thenCheck {
                 expectedHints.forEach {
                     checkInputTextHasExactlyTextHint(it.key, expectedHints.getValue(it.key))
@@ -107,7 +107,7 @@ internal class FormFragmentTest {
                 invoke = { onSetLocalAddress() },
                 action = { FormViewAction.ClearForm }
             )
-            .whenExecute()
+            .whenLaunch()
             .thenCheck {
                 checkButtonSaveClicked()
             }.thenCheck {
