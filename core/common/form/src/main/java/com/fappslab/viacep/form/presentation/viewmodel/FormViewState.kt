@@ -1,7 +1,7 @@
 package com.fappslab.viacep.form.presentation.viewmodel
 
 import androidx.annotation.StringRes
-import com.fappslab.viacep.arch.viewmodel.ViewState
+import com.fappslab.viacep.arch.viewmodel.State
 import com.fappslab.viacep.form.presentation.model.AddressArgs
 
 data class FormViewState(
@@ -15,7 +15,7 @@ data class FormViewState(
     @StringRes val cityErrorRes: Int? = null,
     @StringRes val stateErrorRes: Int? = null,
     @StringRes val areaCodeErrorRes: Int? = null
-) : ViewState {
+) : State {
 
     fun showErrorState(errorMessage: String?) = copy(
         shouldShowError = true,

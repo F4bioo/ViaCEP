@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import androidx.lifecycle.ViewModel as ViewModelFromAndroidX
 
-abstract class ViewModel<S : ViewState, A : ViewAction>(
+abstract class ViewModel<S : State, A : Action>(
     initialState: S
 ) : ViewModelFromAndroidX() {
 

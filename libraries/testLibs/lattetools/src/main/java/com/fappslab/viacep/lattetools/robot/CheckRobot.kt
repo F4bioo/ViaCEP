@@ -1,9 +1,9 @@
 package com.fappslab.viacep.lattetools.robot
 
-interface CheckRobot<T : CheckRobot<T>> {
+interface CheckRobot<CB : CheckRobot<CB>> {
     @Suppress("UNCHECKED_CAST")
-    fun thenCheck(block: T.() -> Unit): T {
-        block(this as T)
+    fun thenCheck(block: CB.() -> Unit): CB {
+        block(this as CB)
         return this
     }
 }
