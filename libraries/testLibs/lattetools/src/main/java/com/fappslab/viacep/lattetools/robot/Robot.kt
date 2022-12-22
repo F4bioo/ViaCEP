@@ -9,3 +9,4 @@ interface Robot<C : CheckRobot<C>, S : ViewState, A : ViewAction, V : ViewModel<
     fun givenAction( invoke: V.() -> Unit, action: () -> A ): Robot<C, S, A, V> = this
     fun whenLaunch(): C
 }
+
