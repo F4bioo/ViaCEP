@@ -13,7 +13,10 @@ inline fun <reified A : Activity> Context.createIntent(
     .apply(params)
     .also { intent -> flags?.let { intent.flags = it } }
 
-fun <P : Parcelable> Activity.viewArgs(): ReadOnlyProperty<Activity, P> =
-    ArgsProperty { activity -> activity.intent.extras }
+fun <P : Parcelable> Activity.viewArgs(): ReadOnlyProperty<Activity, P> {
+    return ArgsProperty { activity ->
+        activity.intent.extras ?: throw IllegalStateException("Have you invoked putArguments()?")
+    }
+}
 
 fun Intent.putArguments(args: Parcelable): Intent = putExtra(KEY_ARGS, args)
