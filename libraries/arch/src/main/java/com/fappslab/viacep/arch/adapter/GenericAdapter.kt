@@ -4,7 +4,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.viewbinding.ViewBinding
 
-internal typealias Bind<VB, T> = (VB, T) -> Unit
+internal typealias Bind<VB, T> = (VB, T, Int) -> Unit
 
 class GenericAdapter<VB : ViewBinding, T : Any>(
     private val inflateBlock: (ViewGroup) -> VB,
@@ -15,7 +15,6 @@ class GenericAdapter<VB : ViewBinding, T : Any>(
         GenericViewHolder(inflateBlock(parent), bindBlock)
 
     override fun onBindViewHolder(holder: GenericViewHolder<VB, T>, position: Int) {
-        getItem(position)?.also(holder::bind)
+        getItem(position)?.also { holder.bind(item = it, position) }
     }
 }
-
