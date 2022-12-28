@@ -36,6 +36,7 @@ internal class LogbookFragment : Fragment(R.layout.logbook_fragment) {
         setupRecycler()
         setupObservables()
         setupList()
+
     }
 
     private fun setupRecycler() {
