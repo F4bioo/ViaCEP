@@ -3,6 +3,8 @@ dependencies {
     implementation(TestLibs.koinTest)
     implementation(TestLibs.mockWebserverTest)
     implementation(TestLibs.kotlinCoroutinesTest)
+    implementation (TestLibs.coreTest)
+    implementation (TestLibs.espressoCoreTest)
 
     testImplementation(TestLibs.junitTest)
     testImplementation(TestLibs.kotlinTest)
@@ -18,10 +20,10 @@ dependencies {
     testImplementation(TestLibs.mockitoInlineTest)
     testImplementation(TestLibs.mockitoKotlinTest)
     testImplementation(TestLibs.coreTest)
+    testImplementation(TestLibs.espressoCoreTest)
 
     debugImplementation (TestLibs.fragmentTest)
     debugImplementation (TestLibs.coreKtxTest)
-    implementation (TestLibs.coreTest)
     debugImplementation(TestLibs.espressoCoreTest)
     debugImplementation(TestLibs.espressoIntentsTest)
     debugImplementation(TestLibs.espressoContribTest)

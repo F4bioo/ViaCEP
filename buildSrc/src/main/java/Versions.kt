@@ -59,7 +59,7 @@ object Versions {
     const val hamcrest_version = "1.3"
     const val assertJ_version = "3.20.2"
     const val testRules_version = "1.3.0"
-    const val coreKtxText_version = "1.5.0"
+    const val coreText_version = "1.5.0"
     const val fragmentTest_version = "1.5.5"
     const val truth_version  = "1.0.1"
     const val orchestrator_version  = "1.0.2"
