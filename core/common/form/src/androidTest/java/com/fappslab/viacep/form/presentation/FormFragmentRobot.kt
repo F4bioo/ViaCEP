@@ -6,7 +6,7 @@ import com.fappslab.viacep.design.R
 import com.fappslab.viacep.form.presentation.viewmodel.FormViewAction
 import com.fappslab.viacep.form.presentation.viewmodel.FormViewModel
 import com.fappslab.viacep.form.presentation.viewmodel.FormViewState
-import com.fappslab.viacep.lattetools.robot.Robot
+import com.fappslab.viacep.lattetools.robot.RobotFragment
 import com.fappslab.viacep.lattetools.rules.FragmentTestRule
 import io.mockk.every
 import io.mockk.mockk
@@ -19,8 +19,8 @@ import org.junit.Rule
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
-private typealias RobotAlias =
-        Robot<FormFragmentCheckRobot, FormViewState, FormViewAction, FormViewModel>
+private typealias FormFragmentRobotAlias = RobotFragment<FormFragment, FormFragmentRobotCheck,
+        FormViewState, FormViewAction, FormViewModel>
 
 @ExperimentalCoroutinesApi
 internal class FormFragmentRobot(
@@ -29,7 +29,7 @@ internal class FormFragmentRobot(
     fragmentKClass = FormFragment::class,
     themeResId = R.style.Theme_Ds,
     fragmentArgs = bundle
-), RobotAlias {
+), FormFragmentRobotAlias {
 
     @get:Rule
     val dispatcherRule = DispatcherTestRule(testDispatcher = UnconfinedTestDispatcher())
@@ -47,7 +47,7 @@ internal class FormFragmentRobot(
 
     override fun givenState(
         state: () -> FormViewState,
-    ): RobotAlias {
+    ): FormFragmentRobotAlias {
         fakeState.update { state() }
         return this
     }
@@ -55,7 +55,7 @@ internal class FormFragmentRobot(
     override fun givenAction(
         invoke: FormViewModel.() -> Unit,
         action: () -> FormViewAction,
-    ): RobotAlias {
+    ): FormFragmentRobotAlias {
         every {
             invoke(fakeViewModel)
         } coAnswers {
@@ -64,8 +64,10 @@ internal class FormFragmentRobot(
         return this
     }
 
-    override fun whenLaunch(): FormFragmentCheckRobot {
-        launchFragment()
-        return FormFragmentCheckRobot()
+    override fun whenLaunch(
+        fragment: (FormFragment) -> Unit,
+    ): FormFragmentRobotCheck {
+        launchFragment(fragment)
+        return FormFragmentRobotCheck()
     }
 }

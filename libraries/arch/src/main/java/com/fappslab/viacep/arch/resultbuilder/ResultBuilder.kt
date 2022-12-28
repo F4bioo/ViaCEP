@@ -3,7 +3,9 @@ package com.fappslab.viacep.arch.resultbuilder
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
-class ResultBuilder<T>(private val functionBlock: suspend () -> T) {
+class ResultBuilder<T> private constructor(
+    private val functionBlock: suspend () -> T,
+) {
     var onStart: (() -> Unit)? = null
     var onCompletion: (() -> Unit)? = null
     var onFailure: ((Throwable) -> Unit)? = null
@@ -21,10 +23,12 @@ class ResultBuilder<T>(private val functionBlock: suspend () -> T) {
             onSuccess = { onSuccess?.invoke(it) }
         )
     }
-}
 
-fun <T> runAsyncSafely(invokeFunction: suspend () -> T): ResultBuilder<T> {
-    return ResultBuilder(invokeFunction)
+    companion object {
+        fun <T> runAsyncSafely(functionBlock: suspend () -> T): ResultBuilder<T> {
+            return ResultBuilder(functionBlock)
+        }
+    }
 }
 
 fun <T> ResultBuilder<T>.onStart(action: () -> Unit): ResultBuilder<T> {

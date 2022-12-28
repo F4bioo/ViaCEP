@@ -6,7 +6,6 @@ import com.fappslab.viacep.form.data.moddel.extension.toAddress
 import com.fappslab.viacep.form.presentation.extension.toAddressArgs
 import com.fappslab.viacep.form.presentation.viewmodel.FormViewAction
 import com.fappslab.viacep.form.presentation.viewmodel.FormViewState
-import com.fappslab.viacep.lattetools.robot.checks.checkInputTextIsEmpty
 import com.fappslab.viacep.remote.stubmockprovider.StubResponse.addressResponse
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.Rule
@@ -112,7 +111,7 @@ internal class FormFragmentTest {
                 checkButtonSaveClicked()
             }.thenCheck {
                 inputFieldIds.forEach { resId ->
-                    checkInputTextIsEmpty(resId)
+                    checkInputTextHasNoText(resId)
                 }
             }
     }

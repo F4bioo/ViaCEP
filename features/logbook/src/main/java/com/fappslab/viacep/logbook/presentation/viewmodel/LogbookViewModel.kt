@@ -1,11 +1,11 @@
 package com.fappslab.viacep.logbook.presentation.viewmodel
 
 import androidx.lifecycle.viewModelScope
+import com.fappslab.viacep.arch.resultbuilder.ResultBuilder.Companion.runAsyncSafely
 import com.fappslab.viacep.arch.resultbuilder.launchIn
 import com.fappslab.viacep.arch.resultbuilder.onCompletion
-import com.fappslab.viacep.arch.resultbuilder.onSuccess
 import com.fappslab.viacep.arch.resultbuilder.onStart
-import com.fappslab.viacep.arch.resultbuilder.runAsyncSafely
+import com.fappslab.viacep.arch.resultbuilder.onSuccess
 import com.fappslab.viacep.arch.viewmodel.ViewModel
 import com.fappslab.viacep.form.domain.usecase.DeleteLocalAddressUseCase
 import com.fappslab.viacep.form.domain.usecase.GetLocalAddressesUseCase
