@@ -5,6 +5,7 @@ dependencies {
     implementation(TestLibs.kotlinCoroutinesTest)
     implementation (TestLibs.coreTest)
     implementation (TestLibs.espressoCoreTest)
+    implementation (TestLibs.fragmentTest)
 
     testImplementation(TestLibs.junitTest)
     testImplementation(TestLibs.kotlinTest)
@@ -21,6 +22,7 @@ dependencies {
     testImplementation(TestLibs.mockitoKotlinTest)
     testImplementation(TestLibs.coreTest)
     testImplementation(TestLibs.espressoCoreTest)
+    testImplementation (TestLibs.fragmentTest)
 
     debugImplementation (TestLibs.fragmentTest)
     debugImplementation (TestLibs.coreKtxTest)
