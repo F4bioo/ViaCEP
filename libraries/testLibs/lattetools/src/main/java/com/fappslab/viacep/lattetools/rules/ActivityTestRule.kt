@@ -2,12 +2,15 @@ package com.fappslab.viacep.lattetools.rules
 
 import android.app.Activity
 import android.content.Intent
+import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.Lifecycle
 import androidx.test.core.app.ActivityScenario
 import androidx.test.core.app.ApplicationProvider
 import org.junit.runner.Description
+import java.lang.reflect.Modifier
 import kotlin.reflect.KClass
 
+@VisibleForTesting(otherwise = Modifier.PRIVATE)
 abstract class ActivityTestRule<A : Activity>(
     private val activityKClass: KClass<A>,
     private val activityIntent: Intent? = null,
