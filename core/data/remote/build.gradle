@@ -1,0 +1,24 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+}
+apply from: "$rootDir/plugins/android-build.gradle"
+
+android {
+    defaultConfig {
+        buildConfigField "String", "BASE_URL", '"https://viacep.com.br/"'
+    }
+}
+
+dependencies {
+    // Libs
+    implementation(Libs.gson)
+    implementation(Libs.okhttpLoggingInterceptor)
+    implementation(Libs.retrofitConverterGson)
+    implementation(Libs.okhttp)
+    implementation(Libs.retrofit)
+
+    // Modules
+    implementation project(Modules.arch)
+    implementation project(Modules.latteTools)
+}

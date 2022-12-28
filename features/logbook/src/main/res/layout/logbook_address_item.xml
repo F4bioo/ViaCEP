@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_address"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/ds_size_02"
+    android:layout_marginTop="@dimen/ds_size_02"
+    app:cardBackgroundColor="@color/ds_white"
+    app:cardCornerRadius="@dimen/ds_size_04"
+    app:cardElevation="1dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:id="@+id/button_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/ds_size_02"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/common_delete"
+            android:padding="@dimen/ds_size_02"
+            android:src="@drawable/ds_ic_delete_forever"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/text_zipcode"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/ds_size_04"
+            android:layout_marginTop="@dimen/ds_size_02"
+            app:layout_constraintBottom_toBottomOf="@+id/button_delete"
+            app:layout_constraintEnd_toStartOf="@+id/button_delete"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/button_delete"
+            app:layout_constraintVertical_bias="0"
+            tools:text="Zipcode: 01001-000" />
+
+        <TextView
+            android:id="@+id/text_street"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/ds_size_01"
+            android:ellipsize="end"
+            android:maxLines="1"
+            app:layout_constraintEnd_toStartOf="@+id/button_delete"
+            app:layout_constraintStart_toStartOf="@+id/text_zipcode"
+            app:layout_constraintTop_toBottomOf="@+id/text_zipcode"
+            tools:text="Street: Praça da Sé" />
+
+        <TextView
+            android:id="@+id/text_city"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/ds_size_01"
+            android:layout_marginBottom="@dimen/ds_size_04"
+            android:ellipsize="end"
+            android:maxLines="1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/text_street"
+            app:layout_constraintStart_toStartOf="@+id/text_street"
+            app:layout_constraintTop_toBottomOf="@+id/text_street"
+            tools:text="City: São Paulo/SP" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

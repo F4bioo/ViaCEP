@@ -47,4 +47,5 @@ object TestLibs {
     const val jsonTest = "org.json:json:${Versions.json_version}"
     const val turbineTest = "app.cash.turbine:turbine:${Versions.turbine_version}"
     const val striktTest = "io.strikt:strikt-core:${Versions.strikt_version}"
+    const val uiAutomator = "androidx.test.uiautomator:uiautomator:${Versions.uiAutomator_version}"
 }

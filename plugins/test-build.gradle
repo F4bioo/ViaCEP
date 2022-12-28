@@ -3,7 +3,6 @@ dependencies {
     implementation(TestLibs.koinTest)
     implementation(TestLibs.mockWebserverTest)
     implementation(TestLibs.kotlinCoroutinesTest)
-    implementation(TestLibs.fragmentTest)
     testImplementation(TestLibs.junitTest)
     testImplementation(TestLibs.kotlinTest)
     testImplementation(TestLibs.kotlinJUnitTest)
@@ -17,6 +16,7 @@ dependencies {
     testImplementation(TestLibs.mockkUnitTest)
     testImplementation(TestLibs.mockitoInlineTest)
     testImplementation(TestLibs.mockitoKotlinTest)
+    debugImplementation (TestLibs.fragmentTest)
 
     api(TestLibs.coreKtxTest)
     api(TestLibs.espressoCoreTest)
@@ -28,6 +28,8 @@ dependencies {
     androidTestImplementation(TestLibs.turbineTest)
     androidTestImplementation(TestLibs.truthTest)
     androidTestImplementation(TestLibs.arcCoreTest)
+    androidTestImplementation(TestLibs.kotlinTest)
+    androidTestImplementation(TestLibs.kotlinJUnitTest)
     androidTestImplementation(TestLibs.koinTest)
     androidTestImplementation(TestLibs.kotlinCoroutinesTest)
     androidTestImplementation(TestLibs.runnerTest)
@@ -35,6 +37,8 @@ dependencies {
     androidTestImplementation(TestLibs.extJunitKtxTest)
     androidTestImplementation(TestLibs.espressoCoreTest)
     androidTestImplementation(TestLibs.mockkAndroidTest)
+    androidTestImplementation(TestLibs.okhttpTest)
+    androidTestImplementation(TestLibs.mockWebserverTest)
     androidTestImplementation(TestLibs.mockitoAndroidTest) {
         exclude group: "net.bytebuddy", module: "byte-buddy-android"
     }

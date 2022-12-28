@@ -60,4 +60,9 @@ dependencies {
     implementation project(Modules.arch)
     implementation project(Modules.latteTools)
     implementation project(Modules.design)
+    implementation project(Modules.local)
+    implementation project(Modules.remote)
+    implementation project(Modules.navigation)
+    implementation project(Modules.form)
+    implementation project(Modules.logbook)
 }
