@@ -3,16 +3,32 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/AndroidStudioProjects/ViaCEP/app/src/main/res/layout/activity_main.xml" value="0.21927083333333333" />
+        <entry key="..\:/AndroidStudioProjects/ViaCEP/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/AndroidStudioProjects/ViaCEP/app/src/main/res/layout/item_view.xml" value="0.21501532175689478" />
+        <entry key="..\:/AndroidStudioProjects/ViaCEP/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.32407407407407407" />
+        <entry key="..\:/AndroidStudioProjects/ViaCEP/core/common/form/src/main/res/layout/form_fragment.xml" value="0.264" />
+        <entry key="..\:/AndroidStudioProjects/ViaCEP/core/common/form/src/main/res/menu/bottom_navigation_menu.xml" value="0.21927083333333333" />
+        <entry key="..\:/AndroidStudioProjects/ViaCEP/features/editor/src/main/res/layout/editor_activity.xml" value="0.16" />
+        <entry key="..\:/AndroidStudioProjects/ViaCEP/features/editor/src/main/res/layout/editor_bottom_sheet.xml" value="0.16" />
+        <entry key="..\:/AndroidStudioProjects/ViaCEP/features/form/src/main/res/layout/form_fragment.xml" value="0.2" />
+        <entry key="..\:/AndroidStudioProjects/ViaCEP/features/form/src/main/res/layout/temprory.xml" value="0.21822916666666667" />
+        <entry key="..\:/AndroidStudioProjects/ViaCEP/features/logbook/src/main/res/layout/logbook_address_item.xml" value="0.1" />
+        <entry key="..\:/AndroidStudioProjects/ViaCEP/features/logbook/src/main/res/layout/logbook_fragment.xml" value="0.264" />
+        <entry key="..\:/AndroidStudioProjects/ViaCEP/features/logbook/src/main/res/layout/logbook_item_row.xml" value="0.1" />
+        <entry key="..\:/AndroidStudioProjects/ViaCEP/libraries/design/src/main/res/drawable/ds_bg_bottom_sheet_top_radius.xml" value="0.1055" />
         <entry key="..\:/AndroidStudioProjects/ViaCEP/libraries/design/src/main/res/drawable/ds_bg_dark_bottom_gradient.xml" value="0.1265" />
         <entry key="..\:/AndroidStudioProjects/ViaCEP/libraries/design/src/main/res/drawable/ds_bg_dark_top_gradient.xml" value="0.1265" />
         <entry key="..\:/AndroidStudioProjects/ViaCEP/libraries/design/src/main/res/drawable/ds_bg_dialog_radius.xml" value="0.1265" />
+        <entry key="..\:/AndroidStudioProjects/ViaCEP/libraries/design/src/main/res/drawable/ds_bg_top_radius_bottom_sheet.xml" value="0.1745" />
         <entry key="..\:/AndroidStudioProjects/ViaCEP/libraries/design/src/main/res/drawable/ds_ic_cancel.xml" value="0.1265" />
+        <entry key="..\:/AndroidStudioProjects/ViaCEP/libraries/design/src/main/res/drawable/ds_ic_edit.xml" value="0.215" />
+        <entry key="..\:/AndroidStudioProjects/ViaCEP/libraries/design/src/main/res/drawable/ds_ic_search.xml" value="0.126" />
         <entry key="..\:/AndroidStudioProjects/ViaCEP/libraries/design/src/main/res/drawable/ds_selector_bottom_navigation_items.xml" value="0.1265" />
         <entry key="..\:/AndroidStudioProjects/ViaCEP/libraries/design/src/main/res/drawable/ds_selector_button_text.xml" value="0.1265" />
         <entry key="..\:/AndroidStudioProjects/ViaCEP/libraries/design/src/main/res/layout/layout_dsdialog.xml" value="0.1925925925925926" />
         <entry key="..\:/AndroidStudioProjects/ViaCEP/libraries/design/src/main/res/layout/layout_dsdialog_sm.xml" value="0.1925925925925926" />
         <entry key="..\:/AndroidStudioProjects/ViaCEP/libraries/design/src/main/res/layout/layout_dsempty.xml" value="0.1296875" />
+        <entry key="..\:/AndroidStudioProjects/ViaCEP/libraries/design/src/main/res/layout/layout_dsmodal.xml" value="0.2" />
         <entry key="..\:/AndroidStudioProjects/ViaCEP/libraries/design/src/main/res/layout/layout_dsprogress.xml" value="0.1925925925925926" />
         <entry key="..\:/AndroidStudioProjects/ViaCEP/libraries/design/src/main/res/layout/layout_dsprogress_vote.xml" value="0.1296875" />
       </map>

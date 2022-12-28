@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="form_name">Form</string>
+    <string name="form_check_field_street_blank_error">Still need to type the street</string>
+    <string name="form_check_field_district_blank_error">Still need to enter the district</string>
+    <string name="form_check_field_city_blank_error">Still need to enter the city</string>
+    <string name="form_check_field_state_blank_error">Still need to enter the state</string>
+    <string name="form_check_field_area_code_blank_error">Still need to enter the area code</string>
+    <string name="form_zip_code">Zip code</string>
+    <string name="form_street">Street</string>
+    <string name="form_district">District</string>
+    <string name="form_city">City</string>
+    <string name="form_state">State</string>
+    <string name="form_area_code">Area code</string>
+</resources>

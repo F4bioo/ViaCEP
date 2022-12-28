@@ -6,28 +6,24 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import kotlinx.coroutines.launch
 
-inline fun <reified S : ViewState, reified A : ViewAction> LifecycleOwner.onViewState(
+inline fun <reified S : State, reified A : Action> LifecycleOwner.onViewState(
     viewModel: ViewModel<S, A>,
     crossinline state: (S) -> Unit
 ) {
     lifecycleScope.launch {
         repeatOnLifecycle(Lifecycle.State.STARTED) {
-            viewModel.state.collect { eventState ->
-                state(eventState)
-            }
+            viewModel.state.collect { state(it) }
         }
     }
 }
 
-inline fun <reified S : ViewState, reified A : ViewAction> LifecycleOwner.onViewAction(
+inline fun <reified S : State, reified A : Action> LifecycleOwner.onViewAction(
     viewModel: ViewModel<S, A>,
     crossinline action: (A) -> Unit
 ) {
     lifecycleScope.launch {
         repeatOnLifecycle(Lifecycle.State.STARTED) {
-            viewModel.action.collect { eventAction ->
-                action(eventAction)
-            }
+            viewModel.action.collect { action(it) }
         }
     }
 }

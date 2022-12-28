@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="common_empty_screen">Ops! Não conseguimos carregar o conteúdo. Vamos tentar novamente?</string>
-    <string name="common_try_again">Tentar novamente</string>
-    <string name="common_cancel">Cancelar</string>
-    <string name="common_await">Aguarde…</string>
-    <string name="common_close">Fechar</string>
-    <string name="common_back">Voltar</string>
+    <string name="common_error_title">Something went wrong!</string>
+    <string name="common_try_again">Try again</string>
+    <string name="common_cancel">Cancel</string>
+    <string name="common_await">Wait…</string>
+    <string name="common_close">Close</string>
+    <string name="common_back">Return</string>
+    <string name="common_save">Save</string>
+    <string name="common_delete">Delete</string>
 
 </resources>

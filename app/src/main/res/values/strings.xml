@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">ViaCEP</string>
+    <string name="app_home">Home</string>
+    <string name="app_logbook">Logbook</string>
 </resources>

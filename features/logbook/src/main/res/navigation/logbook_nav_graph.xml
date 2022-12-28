@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/logbook"
+    android:label="@string/logbook_name"
+    app:startDestination="@id/logbookFragment">
+
+    <fragment
+        android:id="@+id/logbookFragment"
+        android:name="com.fappslab.viacep.logbook.presentation.LogbookFragment"
+        android:label="@string/logbook_name"
+        tools:layout="@layout/logbook_fragment" />
+
+</navigation>
