@@ -67,4 +67,5 @@ object Versions {
     const val strikt_version = "0.34.0"
     const val segmentedProgress_version = "0.0.3"
     const val lottie_version = "5.2.0"
+    const val uiAutomator_version = "2.2.0"
 }

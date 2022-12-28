@@ -10,7 +10,6 @@ import retrofit2.Retrofit
 
 @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
 fun provideNetworkModule(httpUrl: HttpUrl): Module = module {
-
     factory<Retrofit> {
         Retrofit.Builder()
             .baseUrl(httpUrl)

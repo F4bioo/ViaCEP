@@ -2,7 +2,7 @@ package com.fappslab.viacep.form.presentation
 
 import androidx.annotation.IdRes
 import com.fappslab.viacep.form.R
-import com.fappslab.viacep.lattetools.robot.CheckRobot
+import com.fappslab.viacep.lattetools.robot.RobotCheck
 import com.fappslab.viacep.lattetools.robot.checks.checkButtonClicked
 import com.fappslab.viacep.lattetools.robot.checks.checkInputTextHasHint
 import com.fappslab.viacep.lattetools.robot.checks.checkInputTextIsEmpty
@@ -12,7 +12,7 @@ import com.fappslab.viacep.lattetools.robot.checks.checkIsNotDisplayed
 import com.fappslab.viacep.lattetools.robot.checks.checkIsNotEnabled
 
 
-internal class FormFragmentCheckRobot : CheckRobot<FormFragmentCheckRobot> {
+internal class FormFragmentRobotCheck : RobotCheck<FormFragmentRobotCheck> {
 
     fun checkLoadingIsDisplayed() {
         checkIsDisplayed(R.id.loading)
@@ -32,6 +32,10 @@ internal class FormFragmentCheckRobot : CheckRobot<FormFragmentCheckRobot> {
 
     fun checkInputTextHasExactlyTextHint(@IdRes resId: Int, expectedHint: String) {
         checkInputTextHasHint(resId, expectedHint)
+    }
+
+    fun checkInputTextHasNoText(@IdRes resId: Int) {
+        checkInputTextIsEmpty(resId)
     }
 
     fun checkButtonSaveClicked() {

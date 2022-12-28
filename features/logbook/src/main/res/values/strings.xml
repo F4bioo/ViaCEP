@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="logbook_name">Logbook</string>
-    <string name="logbook_zipcode"><![CDATA[<b>Zipcode:</b>]]> %s</string>
+    <string name="logbook_zipcode"><![CDATA[<b>Postal Code:</b>]]> %s</string>
     <string name="logbook_street"><![CDATA[<b>Street:</b>]]> %s</string>
     <string name="logbook_city"><![CDATA[<b>City:</b>]]> %1$s/%2$s</string>
 </resources>

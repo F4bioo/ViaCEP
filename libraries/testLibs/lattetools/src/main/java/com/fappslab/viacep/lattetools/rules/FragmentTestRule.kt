@@ -16,44 +16,41 @@ abstract class FragmentTestRule<F : Fragment>(
     private val fragmentKClass: KClass<F>,
     private val fragmentArgs: Bundle? = null,
     @StyleRes private val themeResId: Int = R.style.Theme_MaterialComponents_Light_DarkActionBar,
-    private val lifecycleInitState: Lifecycle.State = Lifecycle.State.RESUMED
+    private val lifecycleInitState: Lifecycle.State = Lifecycle.State.RESUMED,
 ) : KoinTestRule() {
 
     private lateinit var fragmentScenario: FragmentScenario<F>
 
     override fun finished(description: Description) {
         super.finished(description)
-        finished()
+        cleanupTestRule()
     }
 
-    protected fun launchFragment(): FragmentScenario<F> {
+    protected fun launchFragment(fragment: (F) -> Unit) {
         fragmentScenario = FragmentScenario.launchInContainer(
             fragmentKClass.java,
             fragmentArgs,
             themeResId,
             lifecycleInitState
-        ).also(::setupFragmentInitialization)
-
-        return fragmentScenario
+        ).apply {
+            stateScenarioHandler(scenario = this)
+        }.onFragment(fragment)
     }
 
-    fun runWithFragmentContext(fragmentBlock: (Fragment) -> Unit) {
-        launchFragment()
-        fragmentScenario.onFragment(fragmentBlock)
-        finished()
-    }
-
-    private fun setupFragmentInitialization(fragmentScenario: FragmentScenario<F>) {
+    private fun stateScenarioHandler(scenario: FragmentScenario<F>) {
         if (lifecycleInitState != Lifecycle.State.RESUMED) {
-            fragmentScenario.moveToState(Lifecycle.State.RESUMED)
+            scenario.moveToState(Lifecycle.State.RESUMED)
         }
     }
 
-    private fun destroyFragment() {
-        fragmentScenario.moveToState(Lifecycle.State.DESTROYED)
+    private fun closeFragmentScenario() {
+        fragmentScenario.apply {
+            moveToState(Lifecycle.State.DESTROYED)
+            close()
+        }
     }
 
-    private fun finished() {
-        destroyFragment()
+    private fun cleanupTestRule() {
+        closeFragmentScenario()
     }
 }
