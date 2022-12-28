@@ -28,6 +28,7 @@ object TestLibs {
     const val extJunitTest = "androidx.test.ext:junit:${Versions.androidxJunit_version}"
     const val extJunitKtxTest = "androidx.test.ext:junit-ktx:${Versions.androidxJunit_version}"
     const val coreKtxTest = "androidx.test:core-ktx:${Versions.coreKtxText_version}"
+    const val coreTest = "androidx.test:core:${Versions.coreKtxText_version}"
     const val fragmentTest = "androidx.fragment:fragment-testing:${Versions.fragmentTest_version}"
     const val truthTest = "com.google.truth:truth:${Versions.truth_version}"
     const val orchestratorTest = "com.android.support.test:orchestrator:${Versions.orchestrator_version}"

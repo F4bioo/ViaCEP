@@ -19,6 +19,7 @@ dependencies {
 
     debugImplementation (TestLibs.fragmentTest)
     debugImplementation (TestLibs.coreKtxTest)
+    debugImplementation (TestLibs.coreTest)
     debugImplementation(TestLibs.espressoCoreTest)
     debugImplementation(TestLibs.espressoIntentsTest)
     debugImplementation(TestLibs.espressoContribTest)
@@ -27,6 +28,7 @@ dependencies {
 
     androidTestImplementation(TestLibs.fragmentTest)
     androidTestImplementation(TestLibs.coreKtxTest)
+    androidTestImplementation(TestLibs.coreTest)
     androidTestImplementation(TestLibs.turbineTest)
     androidTestImplementation(TestLibs.truthTest)
     androidTestImplementation(TestLibs.arcCoreTest)
