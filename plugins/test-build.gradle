@@ -21,7 +21,7 @@ dependencies {
 
     debugImplementation (TestLibs.fragmentTest)
     debugImplementation (TestLibs.coreKtxTest)
-    //debugImplementation (TestLibs.coreTest)
+    implementation (TestLibs.coreTest)
     debugImplementation(TestLibs.espressoCoreTest)
     debugImplementation(TestLibs.espressoIntentsTest)
     debugImplementation(TestLibs.espressoContribTest)
