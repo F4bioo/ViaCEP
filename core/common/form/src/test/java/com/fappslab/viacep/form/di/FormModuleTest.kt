@@ -7,7 +7,7 @@ import com.fappslab.viacep.lattetools.koin.KoinModuleTest
 import com.fappslab.viacep.local.client.Database
 import com.fappslab.viacep.local.client.DatabaseImpl
 import com.fappslab.viacep.local.database.FormDatabase
-import com.fappslab.viacep.remote.networkmockprovider.provideNetworkModule
+import com.fappslab.viacep.remote.utils.networkmockprovider.provideNetworkModule
 import io.mockk.mockk
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import okhttp3.HttpUrl.Companion.toHttpUrl

@@ -1,12 +1,15 @@
 package com.fappslab.viacep.arch.rules
 
 import android.content.Context
+import androidx.annotation.VisibleForTesting
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.test.core.app.ApplicationProvider
 import org.junit.rules.TestWatcher
 import org.junit.runner.Description
+import java.lang.reflect.Modifier
 
+@VisibleForTesting(otherwise = Modifier.PRIVATE)
 class LocalTestRule : TestWatcher() {
 
     private val context = ApplicationProvider.getApplicationContext<Context>()

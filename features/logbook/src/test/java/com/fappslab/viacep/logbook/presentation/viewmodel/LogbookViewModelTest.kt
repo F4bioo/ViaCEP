@@ -5,7 +5,7 @@ import com.fappslab.viacep.arch.rules.DispatcherTestRule
 import com.fappslab.viacep.form.data.moddel.extension.toAddress
 import com.fappslab.viacep.form.domain.usecase.DeleteLocalAddressUseCase
 import com.fappslab.viacep.form.domain.usecase.GetLocalAddressesUseCase
-import com.fappslab.viacep.remote.stubmockprovider.StubResponse.addressResponse
+import com.fappslab.viacep.remote.utils.stubmockprovider.StubResponse.addressResponse
 import io.mockk.clearAllMocks
 import io.mockk.coEvery
 import io.mockk.coVerify

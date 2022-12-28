@@ -1,5 +1,6 @@
 package com.fappslab.viacep.arch.rules
 
+import androidx.annotation.VisibleForTesting
 import com.google.gson.Gson
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
@@ -7,7 +8,9 @@ import org.junit.rules.TestWatcher
 import org.junit.runner.Description
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.lang.reflect.Modifier
 
+@VisibleForTesting(otherwise = Modifier.PRIVATE)
 class RemoteTestRule : TestWatcher() {
 
     private val mockWebServer = MockWebServer()

@@ -7,9 +7,9 @@ import com.fappslab.viacep.form.data.service.FormService
 import com.fappslab.viacep.form.data.source.remote.FormRemoteDataSourceImpl
 import com.fappslab.viacep.form.domain.repository.FormRepository
 import com.fappslab.viacep.remote.exception.RemoteThrowable.ApiServiceThrowable
-import com.fappslab.viacep.remote.stubmockprovider.StubResponse.addressResponse
-import com.fappslab.viacep.remote.stubmockprovider.StubResponse.failureBodyResponse
-import com.fappslab.viacep.remote.stubmockprovider.StubResponse.successBodyResponse
+import com.fappslab.viacep.remote.utils.stubmockprovider.StubResponse.addressResponse
+import com.fappslab.viacep.remote.utils.stubmockprovider.StubResponse.failureBodyResponse
+import com.fappslab.viacep.remote.utils.stubmockprovider.StubResponse.successBodyResponse
 import io.mockk.mockk
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest

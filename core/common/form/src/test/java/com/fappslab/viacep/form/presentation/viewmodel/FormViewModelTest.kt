@@ -9,7 +9,7 @@ import com.fappslab.viacep.form.domain.usecase.SetLocalAddressUseCase
 import com.fappslab.viacep.form.presentation.extension.toAddressArgs
 import com.fappslab.viacep.form.presentation.model.AddressArgs
 import com.fappslab.viacep.lattetools.observable.stateTest
-import com.fappslab.viacep.remote.stubmockprovider.StubResponse.addressResponse
+import com.fappslab.viacep.remote.utils.stubmockprovider.StubResponse.addressResponse
 import io.mockk.clearAllMocks
 import io.mockk.coEvery
 import io.mockk.coVerify
