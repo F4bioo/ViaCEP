@@ -1,4 +1,4 @@
-package com.fappslab.viacep.remote.networkmockprovider
+package com.fappslab.viacep.remote.utils.networkmockprovider
 
 import androidx.annotation.VisibleForTesting
 import com.fappslab.viacep.remote.client.HttpClient

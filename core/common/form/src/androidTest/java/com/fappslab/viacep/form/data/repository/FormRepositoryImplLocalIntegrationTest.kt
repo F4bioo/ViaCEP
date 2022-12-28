@@ -8,7 +8,7 @@ import com.fappslab.viacep.form.data.source.local.FormLocalDataSourceImpl
 import com.fappslab.viacep.form.domain.model.Address
 import com.fappslab.viacep.form.domain.repository.FormRepository
 import com.fappslab.viacep.local.database.FormDatabase
-import com.fappslab.viacep.remote.stubmockprovider.StubResponse.addressResponse
+import com.fappslab.viacep.remote.utils.stubmockprovider.StubResponse.addressResponse
 import io.mockk.mockk
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest

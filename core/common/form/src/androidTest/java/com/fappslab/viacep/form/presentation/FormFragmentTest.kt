@@ -6,7 +6,7 @@ import com.fappslab.viacep.form.data.moddel.extension.toAddress
 import com.fappslab.viacep.form.presentation.extension.toAddressArgs
 import com.fappslab.viacep.form.presentation.viewmodel.FormViewAction
 import com.fappslab.viacep.form.presentation.viewmodel.FormViewState
-import com.fappslab.viacep.remote.stubmockprovider.StubResponse.addressResponse
+import com.fappslab.viacep.remote.utils.stubmockprovider.StubResponse.addressResponse
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.Rule
 import org.junit.Test
