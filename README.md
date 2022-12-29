@@ -16,7 +16,7 @@
 
 * [SharedFlow for View actions](https://developer.android.com/kotlin/flow/stateflow-and-sharedflow#sharedflow)
 
-* [ListAdapter - Generic adapter](https://developer.android.com/topic/libraries/architecture/paging/v3-overview)
+* [ListAdapter - Generic adapter](https://developer.android.com/reference/androidx/recyclerview/widget/ListAdapter)
 
 * [DiffUtil](https://developer.android.com/reference/androidx/recyclerview/widget/DiffUtil)
 
