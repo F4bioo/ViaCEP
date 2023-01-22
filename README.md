@@ -1,5 +1,3 @@
-![Badge IN PROGRESS](http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=GREEN&style=for-the-badge)
-
 ## This project involves the use of:
 
 * [Koin dependency injection](https://insert-koin.io/)
